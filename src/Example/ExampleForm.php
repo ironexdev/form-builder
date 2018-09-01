@@ -49,6 +49,7 @@ class ExampleForm extends FormAbstract
         $this->email->setLabel("Email");
         $this->email->setPlaceholder("Email");
         $this->email->addMaxLengthRule(255);
+        $this->email->addMinLengthRule(3);
 
         /* Submit */
         $this->submit = $this->customFormBuilder->createInputSubmit("submit");

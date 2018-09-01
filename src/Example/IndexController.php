@@ -2,6 +2,8 @@
 
 namespace Ironex\Example;
 
+use Ironex\Exception\BadRequestIronException;
+use Ironex\Exception\MethodNotAllowedIronException;
 use Ironex\Form\Field\Input\InputText;
 
 class IndexController
@@ -12,6 +14,9 @@ class IndexController
      */
     private $exampleForm;
 
+    /**
+     * @return void
+     */
     public function renderDefault()
     {
         $this->exampleForm->init();
@@ -46,8 +51,27 @@ class IndexController
            . "</form>";
     }
 
-    public function processExampleForm()
+    /**
+     * @return void
+     * @throws BadRequestIronException
+     * @throws MethodNotAllowedIronException
+     */
+    public function processExampleForm(): void
     {
-        echo 1;
+        $request = new Request();
+        $request->setBody($_POST);
+        $request->setMethod($_SERVER["REQUEST_METHOD"]);
+
+        $this->exampleForm->init();
+        $this->exampleForm->setValues($request);
+        $this->exampleForm->validate();
+
+        if (!$this->exampleForm->isValid())
+        {
+            var_dump($this->exampleForm->getErrors());
+            die();
+        }
+
+        echo "Form has been successfully submitted.";
     }
 }

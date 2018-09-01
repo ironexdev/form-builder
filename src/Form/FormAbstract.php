@@ -271,7 +271,7 @@ abstract class FormAbstract
             if (!$field->isValid())
             {
                 $valid = false;
-                $this->errors[] = $field->getErrors();
+                $this->errors[$field->getName()] = $field->getErrors();
             }
         }
 

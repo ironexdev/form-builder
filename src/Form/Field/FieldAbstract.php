@@ -208,9 +208,7 @@ abstract class FieldAbstract implements FieldInterface
             if (!$rule->test($this->value))
             {
                 $valid = false;
-                $this->errors[] = [
-                    $this->name => $rule->getErrorMessage($this)
-                ];
+                $this->errors[] = $rule->getErrorMessage($this);
             }
         }
 
