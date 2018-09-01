@@ -251,7 +251,7 @@ class FormBuilder
         $maxValueRule = $this->maxValueRuleFactory->create();
         $maxValueRule->setErrorMessage("{{fieldLabel}} field value ({{fieldValue}}) has to be lower or equal to {{maxValue}}");
 
-        return $maxValueRule;    
+        return $maxValueRule;
     }
 
     /**

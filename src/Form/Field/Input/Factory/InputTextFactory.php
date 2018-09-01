@@ -33,20 +33,6 @@ class InputTextFactory extends InputFactoryAbstract
 
     /**
      * @param FormBuilder $formBuilder
-     * @return void
-     */
-    protected function init(FormBuilder $formBuilder): void
-    {
-        parent::init($formBuilder);
-
-        $this->matchValueRule = $formBuilder->createMatchValueRule();
-        $this->matchFieldValueRule = $formBuilder->createMatchFieldValueRule();
-        $this->maxLengthRule = $formBuilder->createMaxLengthRule();
-        $this->minLengthRule = $formBuilder->createMinLengthRule();
-    }
-
-    /**
-     * @param FormBuilder $formBuilder
      * @return InputText
      */
     public function create(FormBuilder $formBuilder): InputText
@@ -61,5 +47,19 @@ class InputTextFactory extends InputFactoryAbstract
         $inputText->setMinLengthRule($this->minLengthRule);
 
         return $inputText;
+    }
+
+    /**
+     * @param FormBuilder $formBuilder
+     * @return void
+     */
+    protected function init(FormBuilder $formBuilder): void
+    {
+        parent::init($formBuilder);
+
+        $this->matchValueRule = $formBuilder->createMatchValueRule();
+        $this->matchFieldValueRule = $formBuilder->createMatchFieldValueRule();
+        $this->maxLengthRule = $formBuilder->createMaxLengthRule();
+        $this->minLengthRule = $formBuilder->createMinLengthRule();
     }
 }

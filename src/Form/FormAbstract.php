@@ -74,110 +74,11 @@ abstract class FormAbstract
     private $valid;
 
     /**
-     * @return string
-     */
-    public function getAcceptCharset(): string
-    {
-        return $this->acceptCharset;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAction(): string
-    {
-        return $this->action;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAutocomplete(): string
-    {
-        return $this->autocomplete;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEnctype(): string
-    {
-        return $this->enctype;
-    }
-
-    /**
      * @return array
      */
     public function getErrors(): array
     {
         return $this->errors;
-    }
-
-    /**
-     * @return FieldInterface[]
-     */
-    public function getFields(): array
-    {
-        if ($this->fields)
-        {
-            return $this->fields;
-        }
-
-        try
-        {
-            $reflection = new ReflectionClass($this);
-            $properties = $reflection->getProperties();
-
-            foreach($properties as $property)
-            {
-                $property->setAccessible(true);
-                $propertyValue = $property->getValue($this);
-                $property->setAccessible(false);
-
-                if($propertyValue instanceof FieldInterface)
-                {
-                    $this->fields[] = $propertyValue;
-                }
-            }
-        }
-        catch (ReflectionException $e)
-        {
-            trigger_error("Reflection error - " . $e->getMessage() . " in <b>" . $e->getFile() . "</b> on " . $e->getLine() . " | triggered by catching ReflectionException ", E_USER_ERROR);
-        }
-
-        return $this->fields;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMethod(): string
-    {
-        return $this->method;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getNovalidate(): bool
-    {
-        return $this->novalidate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTarget(): string
-    {
-        return $this->target;
     }
 
     /**
@@ -217,6 +118,58 @@ abstract class FormAbstract
     }
 
     /**
+     * @param string $value
+     * @return FieldInterface|null
+     */
+    private function getFieldByName(string $value): ?FieldInterface
+    {
+        foreach ($this->getFields() as $field)
+        {
+            if ($value === $field->getName())
+            {
+                return $field;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @return FieldInterface[]
+     */
+    public function getFields(): array
+    {
+        if ($this->fields)
+        {
+            return $this->fields;
+        }
+
+        try
+        {
+            $reflection = new ReflectionClass($this);
+            $properties = $reflection->getProperties();
+
+            foreach ($properties as $property)
+            {
+                $property->setAccessible(true);
+                $propertyValue = $property->getValue($this);
+                $property->setAccessible(false);
+
+                if ($propertyValue instanceof FieldInterface)
+                {
+                    $this->fields[] = $propertyValue;
+                }
+            }
+        }
+        catch (ReflectionException $e)
+        {
+            trigger_error("Reflection error - " . $e->getMessage() . " in <b>" . $e->getFile() . "</b> on " . $e->getLine() . " | triggered by catching ReflectionException ", E_USER_ERROR);
+        }
+
+        return $this->fields;
+    }
+
+    /**
      * @return array
      */
     public function toArray(): array
@@ -241,6 +194,70 @@ abstract class FormAbstract
     }
 
     /**
+     * @return string
+     */
+    public function getAcceptCharset(): string
+    {
+        return $this->acceptCharset;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAction(): string
+    {
+        return $this->action;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAutocomplete(): string
+    {
+        return $this->autocomplete;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEnctype(): string
+    {
+        return $this->enctype;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMethod(): string
+    {
+        return $this->method;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getNovalidate(): bool
+    {
+        return $this->novalidate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTarget(): string
+    {
+        return $this->target;
+    }
+
+    /**
      * @return void
      */
     public function validate(): void
@@ -259,22 +276,5 @@ abstract class FormAbstract
         }
 
         $this->valid = $valid;
-    }
-
-    /**
-     * @param string $value
-     * @return FieldInterface|null
-     */
-    private function getFieldByName(string $value): ?FieldInterface
-    {
-        foreach ($this->getFields() as $field)
-        {
-            if ($value === $field->getName())
-            {
-                return $field;
-            }
-        }
-
-        return null;
     }
 }

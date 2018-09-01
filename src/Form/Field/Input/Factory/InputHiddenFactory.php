@@ -9,7 +9,7 @@ use Ironex\FormBuilder;
 
 class InputHiddenFactory extends InputFactoryAbstract
 {
-  /**
+    /**
      * @var MatchFieldValueRule
      */
     private $matchFieldValueRule;
@@ -18,18 +18,6 @@ class InputHiddenFactory extends InputFactoryAbstract
      * @var MatchValueRule
      */
     private $matchValueRule;
-
-    /**
-     * @param FormBuilder $formBuilder
-     * @return void
-     */
-    protected function init(FormBuilder $formBuilder): void
-    {
-        parent::init($formBuilder);
-
-        $this->matchValueRule = $formBuilder->createMatchValueRule();
-        $this->matchFieldValueRule = $formBuilder->createMatchFieldValueRule();
-    }
 
     /**
      * @param FormBuilder $formBuilder
@@ -45,5 +33,17 @@ class InputHiddenFactory extends InputFactoryAbstract
         $inputHidden->setMatchValueRule($this->matchValueRule);
 
         return $inputHidden;
+    }
+
+    /**
+     * @param FormBuilder $formBuilder
+     * @return void
+     */
+    protected function init(FormBuilder $formBuilder): void
+    {
+        parent::init($formBuilder);
+
+        $this->matchValueRule = $formBuilder->createMatchValueRule();
+        $this->matchFieldValueRule = $formBuilder->createMatchFieldValueRule();
     }
 }

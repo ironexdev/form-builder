@@ -33,20 +33,6 @@ class InputNumberFactory extends InputFactoryAbstract
 
     /**
      * @param FormBuilder $formBuilder
-     * @return void
-     */
-    protected function init(FormBuilder $formBuilder): void
-    {
-        parent::init($formBuilder);
-
-        $this->matchValueRule = $formBuilder->createMatchValueRule();
-        $this->matchFieldValueRule = $formBuilder->createMatchFieldValueRule();
-        $this->maxValueRule = $formBuilder->createMaxValueRule();
-        $this->minValueRule = $formBuilder->createMinValueRule();
-    }
-
-    /**
-     * @param FormBuilder $formBuilder
      * @return InputNumber
      */
     public function create(FormBuilder $formBuilder): InputNumber
@@ -61,5 +47,19 @@ class InputNumberFactory extends InputFactoryAbstract
         $inputNumber->setMinValueRule($this->minValueRule);
 
         return $inputNumber;
+    }
+
+    /**
+     * @param FormBuilder $formBuilder
+     * @return void
+     */
+    protected function init(FormBuilder $formBuilder): void
+    {
+        parent::init($formBuilder);
+
+        $this->matchValueRule = $formBuilder->createMatchValueRule();
+        $this->matchFieldValueRule = $formBuilder->createMatchFieldValueRule();
+        $this->maxValueRule = $formBuilder->createMaxValueRule();
+        $this->minValueRule = $formBuilder->createMinValueRule();
     }
 }

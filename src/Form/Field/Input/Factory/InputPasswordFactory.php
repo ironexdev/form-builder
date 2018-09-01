@@ -33,18 +33,6 @@ class InputPasswordFactory extends InputFactoryAbstract
 
     /**
      * @param FormBuilder $formBuilder
-     * @return void
-     */
-    protected function init(FormBuilder $formBuilder): void
-    {
-        parent::init($formBuilder);
-
-        $this->maxLengthRule = $formBuilder->createMaxLengthRule();
-        $this->minLengthRule = $formBuilder->createMinLengthRule();
-    }
-
-    /**
-     * @param FormBuilder $formBuilder
      * @return InputText
      */
     public function create(FormBuilder $formBuilder): InputText
@@ -59,5 +47,17 @@ class InputPasswordFactory extends InputFactoryAbstract
         $inputText->setMinLengthRule($this->minLengthRule);
 
         return $inputText;
+    }
+
+    /**
+     * @param FormBuilder $formBuilder
+     * @return void
+     */
+    protected function init(FormBuilder $formBuilder): void
+    {
+        parent::init($formBuilder);
+
+        $this->maxLengthRule = $formBuilder->createMaxLengthRule();
+        $this->minLengthRule = $formBuilder->createMinLengthRule();
     }
 }

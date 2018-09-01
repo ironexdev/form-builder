@@ -107,6 +107,15 @@ class InputText extends InputAbstract
     }
 
     /**
+     * @param mixed $value
+     * @return void
+     */
+    public function setPlaceHolder($value): void
+    {
+        $this->placeHolder = $value;
+    }
+
+    /**
      * @param MatchFieldValueRule $matchFieldValueRule
      */
     public function setMatchFieldValueRule(MatchFieldValueRule $matchFieldValueRule): void
@@ -136,15 +145,6 @@ class InputText extends InputAbstract
     public function setMinLengthRule(MinLengthRule $minLengthRule): void
     {
         $this->minLengthRule = $minLengthRule;
-    }
-
-    /**
-     * @param mixed $value
-     * @return void
-     */
-    public function setPlaceHolder($value): void
-    {
-        $this->placeHolder = $value;
     }
 
     /**
