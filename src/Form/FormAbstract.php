@@ -2,19 +2,20 @@
 
 namespace Ironex\Form;
 
-use Ironex\Form\Field\FieldAbstract;
 use Ironex\Form\Field\FieldInterface;
 use Ironex\Exception\BadRequestIronException;
 use Ironex\Exception\MethodNotAllowedIronException;
 use Ironex\FormBuilder;
 use Ironex\RequestInterface;
+use ReflectionClass;
+use ReflectionException;
 
 abstract class FormAbstract
 {
     /**
      * @var string
      */
-    protected $acceptCharset;
+    protected $acceptCharset = "UNKNOWN";
 
     /**
      * @var string
@@ -24,12 +25,12 @@ abstract class FormAbstract
     /**
      * @var string
      */
-    protected $autocomplete;
+    protected $autocomplete = "on";
 
     /**
      * @var string
      */
-    protected $enctype;
+    protected $enctype = "application/x-www-form-urlencoded";
 
     /**
      * @inject
@@ -50,12 +51,12 @@ abstract class FormAbstract
     /**
      * @var bool
      */
-    protected $novalidate;
+    protected $novalidate = true;
 
     /**
      * @var string
      */
-    protected $target;
+    protected $target = "_self";
 
     /**
      * @var array
@@ -122,14 +123,26 @@ abstract class FormAbstract
             return $this->fields;
         }
 
-        $properties = get_object_vars($this);
-
-        foreach ($properties as $property)
+        try
         {
-            if ($property && is_subclass_of($property, FieldAbstract::class, false))
+            $reflection = new ReflectionClass($this);
+            $properties = $reflection->getProperties();
+
+            foreach($properties as $property)
             {
-                $this->fields[] = $property;
+                $property->setAccessible(true);
+                $propertyValue = $property->getValue($this);
+                $property->setAccessible(false);
+
+                if($propertyValue instanceof FieldInterface)
+                {
+                    $this->fields[] = $propertyValue;
+                }
             }
+        }
+        catch (ReflectionException $e)
+        {
+            trigger_error("Reflection error - " . $e->getMessage() . " in <b>" . $e->getFile() . "</b> on " . $e->getLine() . " | triggered by catching ReflectionException ", E_USER_ERROR);
         }
 
         return $this->fields;

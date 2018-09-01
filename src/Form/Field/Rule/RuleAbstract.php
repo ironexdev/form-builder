@@ -32,7 +32,7 @@ abstract class RuleAbstract implements RuleInterface
         }
         catch (ReflectionException $e)
         {
-            trigger_error("Reflection error - " . $e->getMessage() . " in <b>" . $e->getFile() . "</b> on " . $e->getLine() . " | triggered by catching reflection exception ", E_USER_ERROR);
+            trigger_error("Reflection error - " . $e->getMessage() . " in <b>" . $e->getFile() . "</b> on " . $e->getLine() . " | triggered by catching ReflectionException ", E_USER_ERROR);
         }
     }
 

@@ -2,27 +2,42 @@
 
 namespace Ironex\Form\Field;
 
+use Closure;
+use Ironex\Form\Field\Rule\CustomRule;
+
 interface FieldInterface
 {
     /**
-     * @return array
+     * @param $closure
+     * @param string $errorMessage
+     * @return void
      */
-    public function getErrors(): array;
-
-    /**
-     * @return string
-     */
-    public function getName(): string;
+    public function addCustomRule(Closure $closure, string $errorMessage): void;
 
     /**
      * @return bool
      */
-    public function getRequired(): bool;
+    public function getAutofocus(): bool;
 
     /**
-     * @param bool $required
+     * @param bool $autofocus
      */
-    public function setRequired(bool $required): void;
+    public function setAutofocus(bool $autofocus): void;
+
+    /**
+     * @return bool
+     */
+    public function getDisabled(): bool;
+
+    /**
+     * @param bool $disabled
+     */
+    public function setDisabled(bool $disabled): void;
+
+    /**
+     * @return array
+     */
+    public function getErrors(): array;
 
     /**
      * @return null|string
@@ -35,6 +50,22 @@ interface FieldInterface
     public function setLabel(string $label): void;
 
     /**
+     * @param CustomRule $customRule
+     */
+    public function setCustomRule(CustomRule $customRule): void;
+
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function setName(string $name): void;
+
+    /**
+     * @return string
+     */
+    public function getName(): string;
+
+    /**
      * @return mixed
      */
     public function getValue();
@@ -43,6 +74,21 @@ interface FieldInterface
      * @param mixed $value
      */
     public function setValue($value): void;
+
+    /**
+     * @return bool
+     */
+    public function getRequired(): bool;
+
+    /**
+     * @param bool $required
+     */
+    public function setRequired(bool $required): void;
+
+    /**
+     * @return string
+     */
+    public function getRulesJson(): string;
 
     /**
      * @return bool

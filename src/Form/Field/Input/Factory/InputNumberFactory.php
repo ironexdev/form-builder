@@ -33,8 +33,9 @@ class InputNumberFactory extends InputFactoryAbstract
 
     /**
      * @param FormBuilder $formBuilder
+     * @return void
      */
-    protected function init(FormBuilder $formBuilder)
+    protected function init(FormBuilder $formBuilder): void
     {
         parent::init($formBuilder);
 

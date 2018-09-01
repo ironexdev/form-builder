@@ -14,8 +14,9 @@ abstract class FieldFactoryAbstract
 
     /**
      * @param FormBuilder $formBuilder
+     * @return void
      */
-    protected function init(FormBuilder $formBuilder)
+    protected function init(FormBuilder $formBuilder): void
     {
         $this->customRule = $formBuilder->createCustomRule();
     }

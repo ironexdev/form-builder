@@ -146,4 +146,20 @@ class InputText extends InputAbstract
     {
         $this->placeHolder = $value;
     }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType(string $type): void
+    {
+        $this->type = $type;
+    }
 }

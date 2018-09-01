@@ -2,6 +2,7 @@
 
 namespace Ironex\Form\Field;
 
+use Closure;
 use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\RuleInterface;
 
@@ -58,11 +59,10 @@ abstract class FieldAbstract implements FieldInterface
     private $value;
 
     /**
-     * @param $closure
+     * @param Closure $closure
      * @param string $errorMessage
-     * @return void
      */
-    public function addCustomRule($closure, string $errorMessage): void
+    public function addCustomRule(Closure $closure, string $errorMessage): void
     {
         $this->customRule->setClosure($closure);
         $this->customRule->setErrorMessage($errorMessage);
@@ -134,20 +134,20 @@ abstract class FieldAbstract implements FieldInterface
     }
 
     /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
      * @param string $name
      * @return void
      */
     public function setName(string $name): void
     {
         $this->name = $name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
     }
 
     /**
@@ -164,22 +164,6 @@ abstract class FieldAbstract implements FieldInterface
     public function setValue($value): void
     {
         $this->value = $value;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getRequired(): bool
-    {
-        return $this->required;
-    }
-
-    /**
-     * @param bool $required
-     */
-    public function setRequired(bool $required): void
-    {
-        $this->required = $required;
     }
 
     /**
@@ -231,5 +215,21 @@ abstract class FieldAbstract implements FieldInterface
         }
 
         $this->valid = $valid;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getRequired(): bool
+    {
+        return $this->required;
+    }
+
+    /**
+     * @param bool $required
+     */
+    public function setRequired(bool $required): void
+    {
+        $this->required = $required;
     }
 }

@@ -1,10 +1,11 @@
 <?php
 
-namespace Ironex;
+namespace Ironex\Example;
 
 use Ironex\Form\Field\Rule\MaxLengthRule;
+use Ironex\FormBuilder;
 
-class ExampleCustomFormBuilder extends FormBuilder
+class CustomFormBuilder extends FormBuilder
 {
     /**
      * @return MaxLengthRule
