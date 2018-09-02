@@ -41,8 +41,4 @@ class MaxValueRule extends RuleAbstract implements RuleInterface
     {
         return $this->max >= $value;
     }
-
-    private function __clone()
-    {
-    }
 }

@@ -39,12 +39,7 @@ class InputTextFactory extends InputFactoryAbstract
     {
         $this->init($formBuilder);
 
-        $inputText = new InputText();
-        $inputText->setCustomRule($this->customRule);
-        $inputText->setMaxLengthRule($this->maxLengthRule);
-        $inputText->setMatchFieldValueRule($this->matchFieldValueRule);
-        $inputText->setMatchValueRule($this->matchValueRule);
-        $inputText->setMinLengthRule($this->minLengthRule);
+        $inputText = new InputText($this->customRule, $this->requiredRule, $this->matchFieldValueRule, $this->matchValueRule, $this->maxLengthRule, $this->minLengthRule);
 
         return $inputText;
     }

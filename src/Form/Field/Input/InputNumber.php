@@ -3,10 +3,12 @@
 namespace Ironex\Form\Field\Input;
 
 use Ironex\Form\Field\FieldInterface;
+use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\MatchFieldValueRule;
 use Ironex\Form\Field\Rule\MatchValueRule;
 use Ironex\Form\Field\Rule\MaxValueRule;
 use Ironex\Form\Field\Rule\MinValueRule;
+use Ironex\Form\Field\Rule\RequiredRule;
 
 class InputNumber extends InputAbstract
 {
@@ -51,6 +53,25 @@ class InputNumber extends InputAbstract
     private $placeHolder;
 
     /**
+     * InputCheckbox constructor.
+     * @param CustomRule $customRule
+     * @param RequiredRule $requiredRule
+     * @param MatchFieldValueRule $matchFieldValueRule
+     * @param MatchValueRule $matchValueRule
+     * @param MaxValueRule $maxValueRule
+     * @param MinValueRule $minValueRule
+     */
+    public function __construct(CustomRule $customRule, RequiredRule $requiredRule, MatchFieldValueRule $matchFieldValueRule, MatchValueRule $matchValueRule, MaxValueRule $maxValueRule, MinValueRule $minValueRule)
+    {
+        $this->customRule = $customRule;
+        $this->requiredRule = $requiredRule;
+        $this->matchFieldValueRule = $matchFieldValueRule;
+        $this->matchValueRule = $matchValueRule;
+        $this->maxValueRule = $maxValueRule;
+        $this->minValueRule = $minValueRule;
+    }
+
+    /**
      * @param FieldInterface $field
      */
     public function addMatchFieldValueRule(FieldInterface $field): void
@@ -70,24 +91,38 @@ class InputNumber extends InputAbstract
 
     /**
      * @param int $max
-     * @return void
      */
-    public function addMaxValueRule(int $max): void
+    public function setMax(int $max): void
     {
         $this->maxValueRule->setMax($max);
-        $this->rules[] = $this->maxValueRule;
+        $this->addMaxValueRule();
         $this->max = $max;
     }
 
     /**
      * @param int $min
-     * @return void
      */
-    public function addMinValueRule(int $min): void
+    public function setMin(int $min): void
     {
         $this->minValueRule->setMin($min);
-        $this->rules[] = $this->minValueRule;
+        $this->addMinValueRule();
         $this->min = $min;
+    }
+
+    /**
+     * @return void
+     */
+    private function addMaxValueRule(): void
+    {
+        $this->rules[] = $this->maxValueRule;
+    }
+
+    /**
+     * @return void
+     */
+    private function addMinValueRule(): void
+    {
+        $this->rules[] = $this->minValueRule;
     }
 
     /**
@@ -108,34 +143,27 @@ class InputNumber extends InputAbstract
     }
 
     /**
-     * @param MatchFieldValueRule $matchFieldValueRule
+     * @param mixed $value
+     * @return void
      */
-    public function setMatchFieldValueRule(MatchFieldValueRule $matchFieldValueRule): void
+    public function setValue($value): void
     {
-        $this->matchFieldValueRule = $matchFieldValueRule;
+        $this->value = (int) $value;
     }
 
     /**
-     * @param MatchValueRule $matchValueRule
+     * @return int|null
      */
-    public function setMatchValueRule(MatchValueRule $matchValueRule): void
+    public function getMax(): ?int
     {
-        $this->matchValueRule = $matchValueRule;
+        return $this->max;
     }
 
     /**
-     * @param MaxValueRule $maxValueRule
+     * @return int|null
      */
-    public function setMaxValueRule(MaxValueRule $maxValueRule): void
+    public function getMin(): ?int
     {
-        $this->maxValueRule = $maxValueRule;
-    }
-
-    /**
-     * @param MinValueRule $minValueRule
-     */
-    public function setMinValueRule(MinValueRule $minValueRule): void
-    {
-        $this->minValueRule = $minValueRule;
+        return $this->min;
     }
 }

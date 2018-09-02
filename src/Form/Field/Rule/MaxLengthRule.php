@@ -42,8 +42,4 @@ class MaxLengthRule extends RuleAbstract implements RuleInterface
         $this->maxLength = $maxLength;
         $this->constraint = $maxLength;
     }
-
-    private function __clone()
-    {
-    }
 }

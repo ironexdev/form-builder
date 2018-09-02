@@ -3,8 +3,10 @@
 namespace Ironex\Form\Field\Input;
 
 use Ironex\Form\Field\FieldInterface;
+use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\MatchFieldValueRule;
 use Ironex\Form\Field\Rule\MatchValueRule;
+use Ironex\Form\Field\Rule\RequiredRule;
 
 class InputHidden extends InputAbstract
 {
@@ -24,6 +26,21 @@ class InputHidden extends InputAbstract
     protected $type = "hidden";
 
     /**
+     * InputCheckbox constructor.
+     * @param CustomRule $customRule
+     * @param RequiredRule $requiredRule
+     * @param MatchFieldValueRule $matchFieldValueRule
+     * @param MatchValueRule $matchValueRule
+     */
+    public function __construct(CustomRule $customRule, RequiredRule $requiredRule, MatchFieldValueRule $matchFieldValueRule, MatchValueRule $matchValueRule)
+    {
+        $this->customRule = $customRule;
+        $this->requiredRule = $requiredRule;
+        $this->matchFieldValueRule = $matchFieldValueRule;
+        $this->matchValueRule = $matchValueRule;
+    }
+
+    /**
      * @param FieldInterface $field
      */
     public function addMatchFieldValueRule(FieldInterface $field): void
@@ -39,21 +56,5 @@ class InputHidden extends InputAbstract
     {
         $this->matchValueRule->setValue($value);
         $this->rules[] = $this->matchValueRule;
-    }
-
-    /**
-     * @param MatchFieldValueRule $matchFieldValueRule
-     */
-    public function setMatchFieldValueRule(MatchFieldValueRule $matchFieldValueRule): void
-    {
-        $this->matchFieldValueRule = $matchFieldValueRule;
-    }
-
-    /**
-     * @param MatchValueRule $matchValueRule
-     */
-    public function setMatchValueRule(MatchValueRule $matchValueRule): void
-    {
-        $this->matchValueRule = $matchValueRule;
     }
 }

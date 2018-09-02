@@ -3,10 +3,12 @@
 namespace Ironex\Form\Field\Input;
 
 use Ironex\Form\Field\FieldInterface;
+use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\MatchFieldValueRule;
 use Ironex\Form\Field\Rule\MatchValueRule;
 use Ironex\Form\Field\Rule\MaxLengthRule;
 use Ironex\Form\Field\Rule\MinLengthRule;
+use Ironex\Form\Field\Rule\RequiredRule;
 
 class InputPassword extends InputAbstract
 {
@@ -51,6 +53,25 @@ class InputPassword extends InputAbstract
     private $placeHolder;
 
     /**
+     * InputCheckbox constructor.
+     * @param CustomRule $customRule
+     * @param RequiredRule $requiredRule
+     * @param MatchFieldValueRule $matchFieldValueRule
+     * @param MatchValueRule $matchValueRule
+     * @param MaxLengthRule $maxLengthRule
+     * @param MinLengthRule $minLengthRule
+     */
+    public function __construct(CustomRule $customRule, RequiredRule $requiredRule, MatchFieldValueRule $matchFieldValueRule, MatchValueRule $matchValueRule, MaxLengthRule $maxLengthRule, MinLengthRule $minLengthRule)
+    {
+        $this->customRule = $customRule;
+        $this->requiredRule = $requiredRule;
+        $this->matchFieldValueRule = $matchFieldValueRule;
+        $this->matchValueRule = $matchValueRule;
+        $this->maxLengthRule = $maxLengthRule;
+        $this->minLengthRule = $minLengthRule;
+    }
+
+    /**
      * @param FieldInterface $field
      */
     public function addMatchFieldValueRule(FieldInterface $field): void
@@ -69,25 +90,22 @@ class InputPassword extends InputAbstract
     }
 
     /**
-     * @param int $max
-     * @return void
-     */
-    public function addMaxLengthRule(int $max): void
-    {
-        $this->maxLengthRule->setMaxLength($max);
-        $this->rules[] = $this->maxLengthRule;
-        $this->maxLength = $max;
-    }
-
-    /**
      * @param int $min
      * @return void
      */
-    public function addMinLengthRule(int $min): void
+    public function setMinLength(int $min): void
     {
         $this->minLengthRule->setMinLength($min);
-        $this->rules[] = $this->minLengthRule;
+        $this->addMinLengthRule();
         $this->minLength = $min;
+    }
+
+    /**
+     * @return void
+     */
+    private function addMinLengthRule(): void
+    {
+        $this->rules[] = $this->minLengthRule;
     }
 
     /**
@@ -96,6 +114,25 @@ class InputPassword extends InputAbstract
     public function getMaxLength(): int
     {
         return $this->maxLength;
+    }
+
+    /**
+     * @param int $max
+     * @return void
+     */
+    public function setMaxLength(int $max): void
+    {
+        $this->maxLengthRule->setMaxLength($max);
+        $this->addMaxLengthRule();
+        $this->maxLength = $max;
+    }
+
+    /**
+     * @return void
+     */
+    private function addMaxLengthRule(): void
+    {
+        $this->rules[] = $this->maxLengthRule;
     }
 
     /**
@@ -113,21 +150,5 @@ class InputPassword extends InputAbstract
     public function setPlaceHolder($value): void
     {
         $this->placeHolder = $value;
-    }
-
-    /**
-     * @param MatchFieldValueRule $matchFieldValueRule
-     */
-    public function setMatchFieldValueRule(MatchFieldValueRule $matchFieldValueRule): void
-    {
-        $this->matchFieldValueRule = $matchFieldValueRule;
-    }
-
-    /**
-     * @param MatchValueRule $matchValueRule
-     */
-    public function setMatchValueRule(MatchValueRule $matchValueRule): void
-    {
-        $this->matchValueRule = $matchValueRule;
     }
 }

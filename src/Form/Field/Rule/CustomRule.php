@@ -29,8 +29,4 @@ class CustomRule extends RuleAbstract implements RuleInterface
 
         return $closure($value);
     }
-
-    private function __clone()
-    {
-    }
 }

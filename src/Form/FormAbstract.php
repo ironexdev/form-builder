@@ -51,7 +51,7 @@ abstract class FormAbstract
     /**
      * @var bool
      */
-    protected $novalidate = true;
+    protected $novalidate = false;
 
     /**
      * @var string
@@ -242,9 +242,17 @@ abstract class FormAbstract
     }
 
     /**
+     * @return string
+     */
+    public function getNovalidate(): string
+    {
+        return $this->novalidate ? "novalidate" : "";
+    }
+
+    /**
      * @return bool
      */
-    public function getNovalidate(): bool
+    public function isNovalidate(): bool
     {
         return $this->novalidate;
     }

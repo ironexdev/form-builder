@@ -4,6 +4,7 @@ namespace Ironex\Form\Field;
 
 use Closure;
 use Ironex\Form\Field\Rule\CustomRule;
+use Ironex\Form\Field\Rule\RequiredRule;
 use Ironex\Form\Field\Rule\RuleInterface;
 
 abstract class FieldAbstract implements FieldInterface
@@ -14,9 +15,19 @@ abstract class FieldAbstract implements FieldInterface
     protected $customRule;
 
     /**
+     * @var RequiredRule
+     */
+    protected $requiredRule;
+
+    /**
      * @var RuleInterface[]
      */
     protected $rules = [];
+
+    /**
+     * @var mixed
+     */
+    protected $value;
 
     /**
      * @var bool
@@ -54,13 +65,17 @@ abstract class FieldAbstract implements FieldInterface
     private $valid;
 
     /**
-     * @var mixed
+     * @return void
      */
-    private $value;
+    private function addRequiredRule(): void
+    {
+        $this->rules[] = $this->requiredRule;
+    }
 
     /**
      * @param Closure $closure
      * @param string $errorMessage
+     * @return void
      */
     public function addCustomRule(Closure $closure, string $errorMessage): void
     {
@@ -79,6 +94,7 @@ abstract class FieldAbstract implements FieldInterface
 
     /**
      * @param bool $autofocus
+     * @return void
      */
     public function setAutofocus(bool $autofocus): void
     {
@@ -95,6 +111,7 @@ abstract class FieldAbstract implements FieldInterface
 
     /**
      * @param bool $disabled
+     * @return void
      */
     public function setDisabled(bool $disabled): void
     {
@@ -119,18 +136,11 @@ abstract class FieldAbstract implements FieldInterface
 
     /**
      * @param string $label
+     * @return void
      */
     public function setLabel(string $label): void
     {
         $this->label = $label;
-    }
-
-    /**
-     * @param CustomRule $customRule
-     */
-    public function setCustomRule(CustomRule $customRule): void
-    {
-        $this->customRule = $customRule;
     }
 
     /**
@@ -160,6 +170,7 @@ abstract class FieldAbstract implements FieldInterface
 
     /**
      * @param mixed $value
+     * @return void
      */
     public function setValue($value): void
     {
@@ -196,7 +207,7 @@ abstract class FieldAbstract implements FieldInterface
     {
         $valid = true;
 
-        if (!$this->getRequired() && !$this->value)
+        if (!$this->isRequired() && !$this->value)
         {
             $this->valid = $valid;
 
@@ -208,7 +219,7 @@ abstract class FieldAbstract implements FieldInterface
             if (!$rule->test($this->value))
             {
                 $valid = false;
-                $this->errors[] = $rule->getErrorMessage($this);
+                $this->errors[$rule->getName()] = $rule->getErrorMessage($this);
             }
         }
 
@@ -216,9 +227,25 @@ abstract class FieldAbstract implements FieldInterface
     }
 
     /**
+     * @return RequiredRule|null
+     */
+    public function getRequiredRule(): ?RequiredRule
+    {
+        return $this->requiredRule;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRequired(): string
+    {
+        return $this->required ? "required" : "";
+    }
+
+    /**
      * @return bool
      */
-    public function getRequired(): bool
+    public function isRequired(): bool
     {
         return $this->required;
     }
@@ -228,6 +255,7 @@ abstract class FieldAbstract implements FieldInterface
      */
     public function setRequired(bool $required): void
     {
+        $this->addRequiredRule();
         $this->required = $required;
     }
 }

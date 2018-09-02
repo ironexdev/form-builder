@@ -42,8 +42,4 @@ class MinLengthRule extends RuleAbstract implements RuleInterface
     {
         return $this->minLength <= strlen($value);
     }
-
-    private function __clone()
-    {
-    }
 }

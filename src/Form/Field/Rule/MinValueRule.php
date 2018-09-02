@@ -41,8 +41,4 @@ class MinValueRule extends RuleAbstract implements RuleInterface
     {
         return $this->min <= $value;
     }
-
-    private function __clone()
-    {
-    }
 }

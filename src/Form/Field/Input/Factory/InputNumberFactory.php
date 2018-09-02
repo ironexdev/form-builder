@@ -39,12 +39,7 @@ class InputNumberFactory extends InputFactoryAbstract
     {
         $this->init($formBuilder);
 
-        $inputNumber = new InputNumber();
-        $inputNumber->setCustomRule($this->customRule);
-        $inputNumber->setMatchFieldValueRule($this->matchFieldValueRule);
-        $inputNumber->setMatchValueRule($this->matchValueRule);
-        $inputNumber->setMaxValueRule($this->maxValueRule);
-        $inputNumber->setMinValueRule($this->minValueRule);
+        $inputNumber = new InputNumber($this->customRule, $this->requiredRule, $this->matchFieldValueRule, $this->matchValueRule, $this->maxValueRule, $this->minValueRule);
 
         return $inputNumber;
     }

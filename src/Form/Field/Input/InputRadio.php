@@ -2,6 +2,9 @@
 
 namespace Ironex\Form\Field\Input;
 
+use Ironex\Form\Field\Rule\CustomRule;
+use Ironex\Form\Field\Rule\RequiredRule;
+
 class InputRadio extends InputAbstract
 {
     /**
@@ -18,6 +21,17 @@ class InputRadio extends InputAbstract
      * @var array choices
      */
     private $choices = [];
+
+    /**
+     * InputCheckbox constructor.
+     * @param CustomRule $customRule
+     * @param RequiredRule $requiredRule
+     */
+    public function __construct(CustomRule $customRule, RequiredRule $requiredRule)
+    {
+        $this->customRule = $customRule;
+        $this->requiredRule = $requiredRule;
+    }
 
     /**
      * @param string $choice

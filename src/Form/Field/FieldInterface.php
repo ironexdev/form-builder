@@ -3,7 +3,7 @@
 namespace Ironex\Form\Field;
 
 use Closure;
-use Ironex\Form\Field\Rule\CustomRule;
+use Ironex\Form\Field\Rule\RequiredRule;
 
 interface FieldInterface
 {
@@ -50,9 +50,9 @@ interface FieldInterface
     public function setLabel(string $label): void;
 
     /**
-     * @param CustomRule $customRule
+     * @return RequiredRule|null
      */
-    public function setCustomRule(CustomRule $customRule): void;
+    public function getRequiredRule(): ?RequiredRule;
 
     /**
      * @param string $name
@@ -74,16 +74,6 @@ interface FieldInterface
      * @param mixed $value
      */
     public function setValue($value): void;
-
-    /**
-     * @return bool
-     */
-    public function getRequired(): bool;
-
-    /**
-     * @param bool $required
-     */
-    public function setRequired(bool $required): void;
 
     /**
      * @return string

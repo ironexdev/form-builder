@@ -2,7 +2,7 @@
 
 namespace Ironex\Form\Field\Input\Factory;
 
-use Ironex\Form\Field\Input\InputText;
+use Ironex\Form\Field\Input\InputPassword;
 use Ironex\Form\Field\Rule\MatchFieldValueRule;
 use Ironex\Form\Field\Rule\MatchValueRule;
 use Ironex\Form\Field\Rule\MaxLengthRule;
@@ -33,20 +33,15 @@ class InputPasswordFactory extends InputFactoryAbstract
 
     /**
      * @param FormBuilder $formBuilder
-     * @return InputText
+     * @return InputPassword
      */
-    public function create(FormBuilder $formBuilder): InputText
+    public function create(FormBuilder $formBuilder): InputPassword
     {
         $this->init($formBuilder);
 
-        $inputText = new InputText();
-        $inputText->setCustomRule($this->customRule);
-        $inputText->setMaxLengthRule($this->maxLengthRule);
-        $inputText->setMatchFieldValueRule($this->matchFieldValueRule);
-        $inputText->setMatchValueRule($this->matchValueRule);
-        $inputText->setMinLengthRule($this->minLengthRule);
+        $inputPassword = new InputPassword($this->customRule, $this->requiredRule, $this->matchFieldValueRule, $this->matchValueRule, $this->maxLengthRule, $this->minLengthRule);
 
-        return $inputText;
+        return $inputPassword;
     }
 
     /**
@@ -57,6 +52,8 @@ class InputPasswordFactory extends InputFactoryAbstract
     {
         parent::init($formBuilder);
 
+        $this->matchValueRule = $formBuilder->createMatchValueRule();
+        $this->matchFieldValueRule = $formBuilder->createMatchFieldValueRule();
         $this->maxLengthRule = $formBuilder->createMaxLengthRule();
         $this->minLengthRule = $formBuilder->createMinLengthRule();
     }

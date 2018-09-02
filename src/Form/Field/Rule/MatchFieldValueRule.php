@@ -42,8 +42,4 @@ class MatchFieldValueRule extends RuleAbstract implements RuleInterface
         $this->fieldToMatch = $field;
         $this->constraint = $field->getName();
     }
-
-    private function __clone()
-    {
-    }
 }

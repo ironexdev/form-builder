@@ -15,8 +15,7 @@ class InputRadioFactory extends InputFactoryAbstract
     {
         $this->init($formBuilder);
 
-        $inputRadio = new InputRadio();
-        $inputRadio->setCustomRule($this->customRule);
+        $inputRadio = new InputRadio($this->customRule, $this->requiredRule);
 
         return $inputRadio;
     }

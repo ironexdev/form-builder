@@ -27,10 +27,7 @@ class InputHiddenFactory extends InputFactoryAbstract
     {
         $this->init($formBuilder);
 
-        $inputHidden = new InputHidden();
-        $inputHidden->setCustomRule($this->customRule);
-        $inputHidden->setMatchFieldValueRule($this->matchFieldValueRule);
-        $inputHidden->setMatchValueRule($this->matchValueRule);
+        $inputHidden = new InputHidden($this->customRule, $this->requiredRule, $this->matchFieldValueRule, $this->matchValueRule);
 
         return $inputHidden;
     }
