@@ -239,7 +239,7 @@ abstract class FieldAbstract implements FieldInterface
      */
     public function getRequired(): string
     {
-        return $this->required ? "required" : "";
+        return $this->isRequired() ? "required" : "";
     }
 
     /**

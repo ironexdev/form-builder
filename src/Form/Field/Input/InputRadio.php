@@ -2,6 +2,7 @@
 
 namespace Ironex\Form\Field\Input;
 
+use Ironex\Form\Field\Input\Factory\InputRadioOptionFactory;
 use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\RequiredRule;
 
@@ -13,47 +14,43 @@ class InputRadio extends InputAbstract
     protected $type = "radio";
 
     /**
-     * @var bool
+     * @var InputRadioOptionFactory
      */
-    private $checked;
+    private $inputRadioOptionFactory;
 
     /**
-     * @var array choices
+     * @var InputRadioOption[]
      */
-    private $choices = [];
+    private $options = [];
 
     /**
-     * InputCheckbox constructor.
+     * InputRadio constructor.
      * @param CustomRule $customRule
      * @param RequiredRule $requiredRule
+     * @param InputRadioOptionFactory $inputRadioOptionFactory
      */
-    public function __construct(CustomRule $customRule, RequiredRule $requiredRule)
+    public function __construct(CustomRule $customRule, RequiredRule $requiredRule, InputRadioOptionFactory $inputRadioOptionFactory)
     {
         $this->customRule = $customRule;
         $this->requiredRule = $requiredRule;
+        $this->inputRadioOptionFactory = $inputRadioOptionFactory;
     }
 
     /**
-     * @param string $choice
+     * @return InputRadioOption[]
      */
-    public function addChoice(string $choice): void
+    public function getOptions(): array
     {
-        $this->choices[] = $choice;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getChecked(): bool
-    {
-        return $this->checked;
+        return $this->options;
     }
 
     /**
      * @param bool $checked
+     * @param string $label
+     * @param $value
      */
-    public function setChecked(bool $checked): void
+    public function addOption(bool $checked, string $label, $value): void
     {
-        $this->checked = $checked;
+        $this->options[] = $this->inputRadioOptionFactory->create($checked, $label, $value);
     }
 }

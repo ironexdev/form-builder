@@ -8,6 +8,12 @@ use Ironex\FormBuilder;
 class InputRadioFactory extends InputFactoryAbstract
 {
     /**
+     * @inject
+     * @var InputRadioOptionFactory
+     */
+    private $inputRadioOptionFactory;
+
+    /**
      * @param FormBuilder $formBuilder
      * @return InputRadio
      */
@@ -15,7 +21,7 @@ class InputRadioFactory extends InputFactoryAbstract
     {
         $this->init($formBuilder);
 
-        $inputRadio = new InputRadio($this->customRule, $this->requiredRule);
+        $inputRadio = new InputRadio($this->customRule, $this->requiredRule, $this->inputRadioOptionFactory);
 
         return $inputRadio;
     }

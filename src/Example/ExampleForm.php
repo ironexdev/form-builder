@@ -7,6 +7,7 @@ use Ironex\Form\Field\Input\InputFile;
 use Ironex\Form\Field\Input\InputHidden;
 use Ironex\Form\Field\Input\InputNumber;
 use Ironex\Form\Field\Input\InputPassword;
+use Ironex\Form\Field\Input\InputRadio;
 use Ironex\Form\Field\Input\InputSubmit;
 use Ironex\Form\Field\Input\InputText;
 use Ironex\Form\FormAbstract;
@@ -60,6 +61,21 @@ class ExampleForm extends FormAbstract
     private $photo;
 
     /**
+     * @var InputPassword
+     */
+    private $password;
+
+    /**
+     * @var InputPassword
+     */
+    private $passwordRepeat;
+
+    /**
+     * @var InputRadio
+     */
+    private $plan;
+
+    /**
      * @var InputSubmit
      */
     private $submit;
@@ -73,16 +89,6 @@ class ExampleForm extends FormAbstract
      * @var InputNumber
      */
     private $userCount;
-
-    /**
-     * @var InputPassword
-     */
-    private $password;
-
-    /**
-     * @var InputPassword
-     */
-    private $passwordRepeat;
 
     /**
      * @return void
@@ -127,6 +133,12 @@ class ExampleForm extends FormAbstract
         $this->photo->setLabel("Photo");
         $this->photo->setAccept("image/jpeg");
         $this->photo->setMultiple(true);
+
+        /* Plan */
+        $this->plan = $this->customFormBuilder->createInputRadio("plan");
+        $this->plan->setLabel("Plan");
+        $this->plan->addOption(true, "Standard", "standard");
+        $this->plan->addOption(false, "Ultimate", "ultimate");
 
         /* Terms and Conditions */
         $this->termsAndConditions = $this->customFormBuilder->createInputCheckbox("tac");

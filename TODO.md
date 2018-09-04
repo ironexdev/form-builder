@@ -1,6 +1,7 @@
-- add example/test InputRadio
 - add Select
 - add TextArea
 - add example/test MatchValueRule
 - add MaxFileSizeRule
+- add MatchEnumRule
+- connect MatchEnumRule to InputRadio->choices
 - refactor Field setters to return self (?)

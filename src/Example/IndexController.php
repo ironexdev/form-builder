@@ -8,6 +8,7 @@ use Ironex\Form\Field\Input\InputCheckbox;
 use Ironex\Form\Field\Input\InputFile;
 use Ironex\Form\Field\Input\InputHidden;
 use Ironex\Form\Field\Input\InputNumber;
+use Ironex\Form\Field\Input\InputRadio;
 use Ironex\Form\Field\Input\InputText;
 
 class IndexController
@@ -49,6 +50,19 @@ class IndexController
         $photoField = $fields["photo"];
         $photoFieldId = $this->exampleForm->getName() . "-" . $photoField->getName();
         $photoFieldName = $photoField->getMultiple() ? $photoField->getName() . "[]" : $photoField->getName();
+
+        /** @var InputRadio $planField */
+        $planField = $fields["plan"];
+        $planFieldId = $this->exampleForm->getName() . "-" . $planField->getName();
+        $planFieldHtml = "";
+
+        $i = 0;
+        foreach ($planField->getOptions() as $planFieldOption)
+        {
+            $planFieldOptionId = $planFieldId . "-" . $i;
+            $planFieldHtml .= "<label for='$planFieldOptionId'>{$planFieldOption->getLabel()}</label>" . "<input {$planFieldOption->getChecked()} data-rules='{$planField->getRulesJson()}' id='$planFieldOptionId' name='{$planField->getName()}' {$planField->getRequired()} title='{$planFieldOption->getLabel()}' type='{$planField->getType()}' value='{$planFieldOption->getValue()}'>";
+            $i++;
+        }
 
         /** @var InputCheckbox $tacField */
         $tacField = $fields["tac"];
@@ -94,6 +108,9 @@ class IndexController
         <label for='$photoFieldId'>{$photoField->getLabel()}</label>
         <input accept='{$photoField->getAccept()}' data-rules='{$photoField->getRulesJson()}' id='$photoFieldId' {$photoField->getMultiple()} name='{$photoFieldName}' {$photoField->getRequired()} title='{$photoField->getLabel()}' type='{$photoField->getType()}'>
     </field>
+    <field>
+        $planFieldHtml
+    </field>    
     <field>
         <label for='$tacFieldId'>{$tacField->getLabel()}</label>
         <input data-rules='{$tacField->getRulesJson()}' id='$tacFieldId' name='{$tacField->getName()}' {$tacField->getRequired()} title='{$tacField->getLabel()}' type='{$tacField->getType()}'>
