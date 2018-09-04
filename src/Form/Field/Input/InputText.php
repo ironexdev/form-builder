@@ -73,39 +73,39 @@ class InputText extends InputAbstract
 
     /**
      * @param FieldInterface $field
+     * @return $this
      */
-    public function addMatchFieldValueRule(FieldInterface $field): void
+    public function addMatchFieldValueRule(FieldInterface $field): self
     {
         $this->matchFieldValueRule->setFieldToMatch($field);
         $this->rules[] = $this->matchFieldValueRule;
+
+        return $this;
     }
 
     /**
      * @param $value
+     * @return $this
      */
-    public function addMatchValueRule($value): void
+    public function addMatchValueRule($value): self
     {
         $this->matchValueRule->setValue($value);
         $this->rules[] = $this->matchValueRule;
+
+        return $this;
     }
 
     /**
      * @param int $min
-     * @return void
+     * @return $this
      */
-    public function setMinLength(int $min): void
+    public function setMinLength(int $min): self
     {
         $this->minLengthRule->setMinLength($min);
         $this->addMinLengthRule();
         $this->minLength = $min;
-    }
 
-    /**
-     * @return void
-     */
-    private function addMinLengthRule(): void
-    {
-        $this->rules[] = $this->minLengthRule;
+        return $this;
     }
 
     /**
@@ -118,21 +118,15 @@ class InputText extends InputAbstract
 
     /**
      * @param int $max
-     * @return void
+     * @return $this
      */
-    public function setMaxLength(int $max): void
+    public function setMaxLength(int $max): self
     {
         $this->maxLengthRule->setMaxLength($max);
         $this->addMaxLengthRule();
         $this->maxLength = $max;
-    }
 
-    /**
-     * @return void
-     */
-    private function addMaxLengthRule(): void
-    {
-        $this->rules[] = $this->maxLengthRule;
+        return $this;
     }
 
     /**
@@ -144,12 +138,14 @@ class InputText extends InputAbstract
     }
 
     /**
-     * @param mixed $value
-     * @return void
+     * @param string $value
+     * @return $this
      */
-    public function setPlaceHolder($value): void
+    public function setPlaceHolder(string $value): self
     {
         $this->placeHolder = $value;
+
+        return $this;
     }
 
     /**
@@ -162,9 +158,28 @@ class InputText extends InputAbstract
 
     /**
      * @param string $type
+     * @return $this
      */
-    public function setType(string $type): void
+    public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return void
+     */
+    private function addMaxLengthRule(): void
+    {
+        $this->rules[] = $this->maxLengthRule;
+    }
+
+    /**
+     * @return void
+     */
+    private function addMinLengthRule(): void
+    {
+        $this->rules[] = $this->minLengthRule;
     }
 }

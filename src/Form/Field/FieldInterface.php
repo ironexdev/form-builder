@@ -10,9 +10,9 @@ interface FieldInterface
     /**
      * @param $closure
      * @param string $errorMessage
-     * @return void
+     * @return $this
      */
-    public function addCustomRule(Closure $closure, string $errorMessage): void;
+    public function addCustomRule(Closure $closure, string $errorMessage); // : $this
 
     /**
      * @return bool
@@ -21,8 +21,9 @@ interface FieldInterface
 
     /**
      * @param bool $autofocus
+     * @return $this
      */
-    public function setAutofocus(bool $autofocus): void;
+    public function setAutofocus(bool $autofocus); // : $this
 
     /**
      * @return bool
@@ -31,8 +32,9 @@ interface FieldInterface
 
     /**
      * @param bool $disabled
+     * @return $this
      */
-    public function setDisabled(bool $disabled): void;
+    public function setDisabled(bool $disabled); // : $this
 
     /**
      * @return array
@@ -46,8 +48,9 @@ interface FieldInterface
 
     /**
      * @param string $label
+     * @return $this
      */
-    public function setLabel(string $label): void;
+    public function setLabel(string $label); // : $this
 
     /**
      * @return RequiredRule|null
@@ -56,9 +59,9 @@ interface FieldInterface
 
     /**
      * @param string $name
-     * @return void
+     * @return $this
      */
-    public function setName(string $name): void;
+    public function setName(string $name); // : $this
 
     /**
      * @return string
@@ -72,8 +75,9 @@ interface FieldInterface
 
     /**
      * @param mixed $value
+     * @return $this
      */
-    public function setValue($value): void;
+    public function setValue($value); // : $this
 
     /**
      * @return string

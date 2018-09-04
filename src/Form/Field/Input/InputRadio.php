@@ -48,9 +48,12 @@ class InputRadio extends InputAbstract
      * @param bool $checked
      * @param string $label
      * @param $value
+     * @return $this
      */
-    public function addOption(bool $checked, string $label, $value): void
+    public function addOption(bool $checked, string $label, $value): self
     {
         $this->options[] = $this->inputRadioOptionFactory->create($checked, $label, $value);
+
+        return $this;
     }
 }

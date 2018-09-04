@@ -73,40 +73,98 @@ class InputNumber extends InputAbstract
 
     /**
      * @param FieldInterface $field
+     * @return $this
      */
-    public function addMatchFieldValueRule(FieldInterface $field): void
+    public function addMatchFieldValueRule(FieldInterface $field): self
     {
         $this->matchFieldValueRule->setFieldToMatch($field);
         $this->rules[] = $this->matchFieldValueRule;
+
+        return $this;
     }
 
     /**
      * @param $value
+     * @return $this
      */
-    public function addMatchValueRule($value): void
+    public function addMatchValueRule($value): self
     {
         $this->matchValueRule->setValue($value);
         $this->rules[] = $this->matchValueRule;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlaceHolder(): string
+    {
+        return $this->placeHolder;
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function setPlaceHolder(string $value): self
+    {
+        $this->placeHolder = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $value
+     * @return $this
+     */
+    public function setValue($value): self
+    {
+        $this->value = (int) $value;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getMax(): ?int
+    {
+        return $this->max;
     }
 
     /**
      * @param int $max
+     * @return $this
      */
-    public function setMax(int $max): void
+    public function setMax(int $max): self
     {
         $this->maxValueRule->setMax($max);
         $this->addMaxValueRule();
         $this->max = $max;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getMin(): ?int
+    {
+        return $this->min;
     }
 
     /**
      * @param int $min
+     * @return $this
      */
-    public function setMin(int $min): void
+    public function setMin(int $min): self
     {
         $this->minValueRule->setMin($min);
         $this->addMinValueRule();
         $this->min = $min;
+
+        return $this;
     }
 
     /**
@@ -123,47 +181,5 @@ class InputNumber extends InputAbstract
     private function addMinValueRule(): void
     {
         $this->rules[] = $this->minValueRule;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPlaceHolder(): string
-    {
-        return $this->placeHolder;
-    }
-
-    /**
-     * @param mixed $value
-     * @return void
-     */
-    public function setPlaceHolder($value): void
-    {
-        $this->placeHolder = $value;
-    }
-
-    /**
-     * @param mixed $value
-     * @return void
-     */
-    public function setValue($value): void
-    {
-        $this->value = (int) $value;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getMax(): ?int
-    {
-        return $this->max;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getMin(): ?int
-    {
-        return $this->min;
     }
 }

@@ -1,7 +1,8 @@
 - add Select
 - add TextArea
+- add example/test CustomRule
 - add example/test MatchValueRule
 - add MaxFileSizeRule
 - add MatchEnumRule
 - connect MatchEnumRule to InputRadio->choices
-- refactor Field setters to return self (?)
+- refactor InputNumber->setValue to accept only integer - don't typecast (validate data types on FormAbstract->setValues)

@@ -65,23 +65,27 @@ abstract class FieldAbstract implements FieldInterface
     private $valid;
 
     /**
-     * @return void
+     * @return $this
      */
-    private function addRequiredRule(): void
+    private function addRequiredRule() // : $this
     {
         $this->rules[] = $this->requiredRule;
+
+        return $this;
     }
 
     /**
      * @param Closure $closure
      * @param string $errorMessage
-     * @return void
+     * @return $this
      */
-    public function addCustomRule(Closure $closure, string $errorMessage): void
+    public function addCustomRule(Closure $closure, string $errorMessage) // : $this
     {
         $this->customRule->setClosure($closure);
         $this->customRule->setErrorMessage($errorMessage);
         $this->rules[] = $this->customRule;
+
+        return $this;
     }
 
     /**
@@ -94,11 +98,13 @@ abstract class FieldAbstract implements FieldInterface
 
     /**
      * @param bool $autofocus
-     * @return void
+     * @return $this
      */
-    public function setAutofocus(bool $autofocus): void
+    public function setAutofocus(bool $autofocus) // : $this
     {
         $this->autofocus = $autofocus;
+
+        return $this;
     }
 
     /**
@@ -111,11 +117,13 @@ abstract class FieldAbstract implements FieldInterface
 
     /**
      * @param bool $disabled
-     * @return void
+     * @return $this
      */
-    public function setDisabled(bool $disabled): void
+    public function setDisabled(bool $disabled) // : $this
     {
         $this->disabled = $disabled;
+
+        return $this;
     }
 
     /**
@@ -136,11 +144,13 @@ abstract class FieldAbstract implements FieldInterface
 
     /**
      * @param string $label
-     * @return void
+     * @return $this
      */
-    public function setLabel(string $label): void
+    public function setLabel(string $label) // : $this
     {
         $this->label = $label;
+
+        return $this;
     }
 
     /**
@@ -153,11 +163,13 @@ abstract class FieldAbstract implements FieldInterface
 
     /**
      * @param string $name
-     * @return void
+     * @return $this
      */
-    public function setName(string $name): void
+    public function setName(string $name) // : $this
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -170,11 +182,13 @@ abstract class FieldAbstract implements FieldInterface
 
     /**
      * @param mixed $value
-     * @return void
+     * @return $this
      */
-    public function setValue($value): void
+    public function setValue($value) // : $this
     {
         $this->value = $value;
+
+        return $this;
     }
 
     /**
@@ -252,10 +266,13 @@ abstract class FieldAbstract implements FieldInterface
 
     /**
      * @param bool $required
+     * @return $this
      */
-    public function setRequired(bool $required): void
+    public function setRequired(bool $required): self
     {
         $this->addRequiredRule();
         $this->required = $required;
+
+        return $this;
     }
 }

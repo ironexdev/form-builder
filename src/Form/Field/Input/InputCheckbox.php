@@ -30,9 +30,12 @@ class InputCheckbox extends InputAbstract
 
     /**
      * @param mixed $value
+     * @return $this
      */
-    public function setValue($value): void
+    public function setValue($value): self
     {
         $this->value = true;
+
+        return $this;
     }
 }

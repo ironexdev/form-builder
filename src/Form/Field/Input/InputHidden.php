@@ -42,19 +42,25 @@ class InputHidden extends InputAbstract
 
     /**
      * @param FieldInterface $field
+     * @return $this
      */
-    public function addMatchFieldValueRule(FieldInterface $field): void
+    public function addMatchFieldValueRule(FieldInterface $field): self
     {
         $this->matchFieldValueRule->setFieldToMatch($field);
         $this->rules[] = $this->matchFieldValueRule;
+
+        return $this;
     }
 
     /**
      * @param $value
+     * @return $this
      */
-    public function addMatchValueRule($value): void
+    public function addMatchValueRule($value): self
     {
         $this->matchValueRule->setValue($value);
         $this->rules[] = $this->matchValueRule;
+
+        return $this;
     }
 }

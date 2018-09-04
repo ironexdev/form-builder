@@ -51,20 +51,15 @@ class InputFile extends InputAbstract
 
     /**
      * @param string $accept
+     * @return $this
      */
-    public function setAccept(string $accept): void
+    public function setAccept(string $accept): self
     {
         $this->matchMimeTypeRule->setAllowedMimeTypes(explode(",", $accept));
         $this->addMatchMimeTypeRule();
         $this->accept = $accept;
-    }
 
-    /**
-     * @return void
-     */
-    private function addMatchMimeTypeRule(): void
-    {
-        $this->rules[] = $this->matchMimeTypeRule;
+        return $this;
     }
 
     /**
@@ -85,10 +80,20 @@ class InputFile extends InputAbstract
 
     /**
      * @param bool $multiple
-     * @return void
+     * @return $this
      */
-    public function setMultiple(bool $multiple): void
+    public function setMultiple(bool $multiple): self
     {
         $this->multiple = $multiple;
+
+        return $this;
+    }
+
+    /**
+     * @return void
+     */
+    private function addMatchMimeTypeRule(): void
+    {
+        $this->rules[] = $this->matchMimeTypeRule;
     }
 }
