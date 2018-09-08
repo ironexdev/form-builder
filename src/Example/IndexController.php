@@ -10,6 +10,8 @@ use Ironex\Form\Field\Input\InputHidden;
 use Ironex\Form\Field\Input\InputNumber;
 use Ironex\Form\Field\Input\InputRadio;
 use Ironex\Form\Field\Input\InputText;
+use Ironex\Form\Field\Select\Select;
+use Ironex\Form\Field\TextArea\TextArea;
 
 class IndexController
 {
@@ -41,6 +43,16 @@ class IndexController
         $passwordRepeatField = $fields["password-repeat"];
         $passwordRepeatFieldId = $this->exampleForm->getName() . "-" . $passwordRepeatField->getName();
 
+        /** @var Select $countryField */
+        $countryField = $fields["country"];
+        $countryFieldId = $this->exampleForm->getName() . "-" . $countryField->getName();
+        $countryFieldOptionsHtml = "";
+
+        foreach ($countryField->getOptions() as $countryFieldOption)
+        {
+            $countryFieldOptionsHtml .= "<option " . $countryFieldOption->getDisabled() . " " . $countryFieldOption->getselected() . " value='" . $countryFieldOption->getValue() . "'>" . $countryFieldOption->getLabel() . "</option>";
+        }
+
         /** @var InputNumber $userCountField */
         $userCountField = $fields["user-count"];
         $userCountFieldId = $this->exampleForm->getName() . "-" . $userCountField->getName();
@@ -67,6 +79,10 @@ class IndexController
         /** @var InputCheckbox $tacField */
         $tacField = $fields["tac"];
         $tacFieldId = $this->exampleForm->getName() . "-" . $tacField->getName();
+
+        /** @var TextArea $descriptionField */
+        $descriptionField = $fields["description"];
+        $descriptionFieldId = $this->exampleForm->getName() . "-" . $descriptionField->getName();        
 
         /** @var InputHidden $csrfTokenField */
         $csrfTokenField = $fields["csrf-token"];
@@ -101,6 +117,12 @@ class IndexController
         <input data-rules='{$passwordRepeatField->getRulesJson()}' id='$passwordRepeatFieldId' name='{$passwordRepeatField->getName()}' placeholder='{$passwordRepeatField->getPlaceholder()}' {$passwordRepeatField->getRequired()} title='{$passwordRepeatField->getLabel()}' type='{$passwordRepeatField->getType()}'>
     </field>
     <field>
+        <label for='$countryFieldId'>{$countryField->getLabel()}</label>
+        <select data-rules='{$countryField->getRulesJson()}' id='$countryFieldId' name='{$countryField->getName()}' {$countryField->getRequired()} title='{$countryField->getLabel()}'>
+            $countryFieldOptionsHtml
+        </select>
+    </field>
+    <field>
         <label for='$userCountFieldId'>{$userCountField->getLabel()}</label>
         <input data-rules='{$userCountField->getRulesJson()}' id='$userCountFieldId' {$userCountFieldMax} name='{$userCountField->getName()}' placeholder='{$userCountField->getPlaceholder()}' {$userCountField->getRequired()} title='{$userCountField->getLabel()}' type='{$userCountField->getType()}'>
     </field>
@@ -114,6 +136,10 @@ class IndexController
     <field>
         <label for='$tacFieldId'>{$tacField->getLabel()}</label>
         <input data-rules='{$tacField->getRulesJson()}' id='$tacFieldId' name='{$tacField->getName()}' {$tacField->getRequired()} title='{$tacField->getLabel()}' type='{$tacField->getType()}'>
+    </field>
+    <field>
+        <label for='$descriptionFieldId'>{$descriptionField->getLabel()}</label>
+        <textarea data-rules='{$descriptionField->getRulesJson()}' id='$descriptionFieldId' name='{$descriptionField->getName()}' placeholder='{$descriptionField->getPlaceholder()}' {$descriptionField->getRequired()} title='{$descriptionField->getLabel()}'></textarea>
     </field>
     <field>
         <input data-rules='{$csrfTokenField->getRulesJson()}' id='$csrfTokenFieldId' name='{$csrfTokenField->getName()}' {$csrfTokenField->getRequired()} type='{$csrfTokenField->getType()}' value='{$csrfTokenFieldValue}'>

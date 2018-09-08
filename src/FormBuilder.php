@@ -36,6 +36,10 @@ use Ironex\Form\Field\Rule\MaxValueRule;
 use Ironex\Form\Field\Rule\MinLengthRule;
 use Ironex\Form\Field\Rule\MinValueRule;
 use Ironex\Form\Field\Rule\RequiredRule;
+use Ironex\Form\Field\Select\Factory\SelectFactory;
+use Ironex\Form\Field\Select\Select;
+use Ironex\Form\Field\TextArea\Factory\TextAreaFactory;
+use Ironex\Form\Field\TextArea\TextArea;
 
 class FormBuilder
 {
@@ -140,6 +144,18 @@ class FormBuilder
      * @var InputPasswordFactory
      */
     protected $inputPasswordFactory;
+
+    /**
+     * @inject
+     * @var SelectFactory
+     */
+    protected $selectFactory;
+
+    /**
+     * @inject
+     * @var TextAreaFactory
+     */
+    protected $textAreaFactory;
 
     /**
      * @return CustomRule
@@ -333,5 +349,29 @@ class FormBuilder
         $requiredRule->setErrorMessage("{{fieldLabel}} is required");
 
         return $requiredRule;
+    }
+
+    /**
+     * @param string $name
+     * @return Select
+     */
+    public function createSelect(string $name): Select
+    {
+        $select = $this->selectFactory->create($this);
+        $select->setName($name);
+
+        return $select;
+    }
+
+    /**
+     * @param string $name
+     * @return TextArea
+     */
+    public function createTextArea(string $name): TextArea
+    {
+        $textArea = $this->textAreaFactory->create($this);
+        $textArea->setName($name);
+
+        return $textArea;
     }
 }

@@ -29,10 +29,13 @@ class InputRadioOption
 
     /**
      * @param mixed $value
+     * @return $this
      */
-    public function setValue($value): void
+    public function setValue($value): self
     {
         $this->value = $value;
+
+        return $this;
     }
 
     /**
@@ -45,10 +48,13 @@ class InputRadioOption
 
     /**
      * @param string $label
+     * @return $this
      */
-    public function setLabel(string $label): void
+    public function setLabel(string $label): self
     {
         $this->label = $label;
+
+        return $this;
     }
 
     /**
@@ -69,9 +75,12 @@ class InputRadioOption
 
     /**
      * @param bool $checked
+     * @return $this
      */
-    public function setChecked(bool $checked): void
+    public function setChecked(bool $checked): self
     {
         $this->checked = $checked;
+
+        return $this;
     }
 }

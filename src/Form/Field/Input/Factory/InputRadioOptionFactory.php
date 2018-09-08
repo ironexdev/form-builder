@@ -7,18 +7,10 @@ use Ironex\Form\Field\Input\InputRadioOption;
 class InputRadioOptionFactory
 {
     /**
-     * @param bool $checked
-     * @param string $label
-     * @param $value
-     * @return \Ironex\Form\Field\Input\InputRadioOption
+     * @return InputRadioOption
      */
-    public function create(bool $checked, string $label, $value): InputRadioOption
+    public function create(): InputRadioOption
     {
-        $option = new InputRadioOption();
-        $option->setChecked($checked);
-        $option->setLabel($label);
-        $option->setValue($value);
-
-        return $option;
+        return new InputRadioOption();
     }
 }

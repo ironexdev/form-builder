@@ -96,19 +96,6 @@ class InputText extends InputAbstract
     }
 
     /**
-     * @param int $min
-     * @return $this
-     */
-    public function setMinLength(int $min): self
-    {
-        $this->minLengthRule->setMinLength($min);
-        $this->addMinLengthRule();
-        $this->minLength = $min;
-
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getMaxLength(): int
@@ -125,6 +112,27 @@ class InputText extends InputAbstract
         $this->maxLengthRule->setMaxLength($max);
         $this->addMaxLengthRule();
         $this->maxLength = $max;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMinLength(): int
+    {
+        return $this->minLength;
+    }
+
+    /**
+     * @param int $min
+     * @return $this
+     */
+    public function setMinLength(int $min): self
+    {
+        $this->minLengthRule->setMinLength($min);
+        $this->addMinLengthRule();
+        $this->minLength = $min;
 
         return $this;
     }

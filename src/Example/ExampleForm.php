@@ -10,6 +10,8 @@ use Ironex\Form\Field\Input\InputPassword;
 use Ironex\Form\Field\Input\InputRadio;
 use Ironex\Form\Field\Input\InputSubmit;
 use Ironex\Form\Field\Input\InputText;
+use Ironex\Form\Field\Select\Select;
+use Ironex\Form\Field\TextArea\TextArea;
 use Ironex\Form\FormAbstract;
 
 class ExampleForm extends FormAbstract
@@ -46,9 +48,19 @@ class ExampleForm extends FormAbstract
     protected $name = "example-form";
 
     /**
+     * @var Select
+     */
+    private $country;
+
+    /**
      * @var InputHidden
      */
     private $csrfToken;
+
+    /**
+     * @var TextArea
+     */
+    private $description;
 
     /**
      * @var InputText
@@ -111,6 +123,11 @@ class ExampleForm extends FormAbstract
                                                         ->setMaxLength(64)->setMinLength(8)
                                                         ->addMatchFieldValueRule($this->password)->setRequired(true);
 
+        /* Country */
+        $this->country = $this->customFormBuilder->createSelect("country")->setLabel("Country")
+                                                 ->addOption("Select country", null, true, true)
+                                                 ->addOption("Czechia", 0)->addOption("Slovakia", 1)->setRequired(true);
+
         /* User count */
         $this->userCount = $this->customFormBuilder->createInputNumber("user-count")->setLabel("User count")
                                                    ->setPlaceHolder("10")->setMax(1000)->setMin(10)->setRequired(true);
@@ -122,11 +139,16 @@ class ExampleForm extends FormAbstract
         /* Plan */
         $this->plan = $this->customFormBuilder->createInputRadio("plan")->setLabel("Plan")
                                               ->addOption(true, "Standard", "standard")
-                                              ->addOption(false, "Ultimate", "ultimate");
+                                              ->addOption(false, "Ultimate", "ultimate")->setRequired(true);
 
         /* Terms and Conditions */
         $this->termsAndConditions = $this->customFormBuilder->createInputCheckbox("tac")
                                                             ->setLabel("Terms and Conditions")->setRequired(true);
+
+        /* Description */
+        $this->description = $this->customFormBuilder->createTextArea("description")->setLabel("Description")
+                                                     ->setMaxLength(1064)->setMinLength(1)
+                                                     ->setPlaceholder("Description");
 
         /* CSRF Token */
         $this->csrfToken = $this->customFormBuilder->createInputHidden("csrf-token")->setRequired(true);
