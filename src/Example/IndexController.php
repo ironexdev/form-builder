@@ -158,10 +158,30 @@ EOT;
      */
     public function processExampleForm(): void
     {
+        /*
+         * Check following php.ini settings:
+         * - file_uploads
+         * - max_file_uploads
+         * - post_max_size
+         * - upload_max_filesize
+         * - make sure post_max_size is same or larger than upload_max_filesize
+         */
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST" && empty($_POST) && empty($_FILES) && $_SERVER["CONTENT_LENGTH"] > 0)
+        {
+            $response = [
+                "success" => false,
+                "message" => "POST data is too large - max POST size is " . ini_get("post_max_size") . ", size of received data is " . $_SERVER["CONTENT_LENGTH"] . "."
+            ];
+
+            echo json_encode($response, JSON_PRETTY_PRINT);
+            die();
+        }
+
         $fileParameters = [];
         foreach ($_FILES as $fileParameter => $fileParameterValue)
         {
-            if ($fileParameterValue["error"] === UPLOAD_ERR_NO_FILE || (isset($fileParameterValue["error"][0]) && $fileParameterValue["error"][0] === UPLOAD_ERR_NO_FILE))
+            if ($fileParameterValue["error"] !== UPLOAD_ERR_OK && (isset($fileParameterValue["error"][0]) && $fileParameterValue["error"][0] !== UPLOAD_ERR_OK))
             {
                 continue;
             }
@@ -185,6 +205,11 @@ EOT;
             die();
         }
 
-        echo "Form has been successfully submitted.";
+        $response = [
+            "success" => true,
+            "message" => "Form has been successfully submitted."
+        ];
+
+        echo json_encode($response, JSON_PRETTY_PRINT);
     }
 }

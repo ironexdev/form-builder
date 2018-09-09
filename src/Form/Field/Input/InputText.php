@@ -4,6 +4,7 @@ namespace Ironex\Form\Field\Input;
 
 use Ironex\Form\Field\FieldInterface;
 use Ironex\Form\Field\Rule\CustomRule;
+use Ironex\Form\Field\Rule\MatchEnumRule;
 use Ironex\Form\Field\Rule\MatchFieldValueRule;
 use Ironex\Form\Field\Rule\MatchValueRule;
 use Ironex\Form\Field\Rule\MaxLengthRule;
@@ -12,6 +13,11 @@ use Ironex\Form\Field\Rule\RequiredRule;
 
 class InputText extends InputAbstract
 {
+    /**
+     * @var MatchEnumRule
+     */
+    protected $matchEnumRule;
+
     /**
      * @var MatchFieldValueRule
      */
@@ -56,19 +62,33 @@ class InputText extends InputAbstract
      * InputCheckbox constructor.
      * @param CustomRule $customRule
      * @param RequiredRule $requiredRule
+     * @param MatchEnumRule $matchEnumRule
      * @param MatchFieldValueRule $matchFieldValueRule
      * @param MatchValueRule $matchValueRule
      * @param MaxLengthRule $maxLengthRule
      * @param MinLengthRule $minLengthRule
      */
-    public function __construct(CustomRule $customRule, RequiredRule $requiredRule, MatchFieldValueRule $matchFieldValueRule, MatchValueRule $matchValueRule, MaxLengthRule $maxLengthRule, MinLengthRule $minLengthRule)
+    public function __construct(CustomRule $customRule, RequiredRule $requiredRule, MatchEnumRule $matchEnumRule, MatchFieldValueRule $matchFieldValueRule, MatchValueRule $matchValueRule, MaxLengthRule $maxLengthRule, MinLengthRule $minLengthRule)
     {
         $this->customRule = $customRule;
         $this->requiredRule = $requiredRule;
+        $this->matchEnumRule = $matchEnumRule;
         $this->matchFieldValueRule = $matchFieldValueRule;
         $this->matchValueRule = $matchValueRule;
         $this->maxLengthRule = $maxLengthRule;
         $this->minLengthRule = $minLengthRule;
+    }
+
+    /**
+     * @param array $enum
+     * @return $this
+     */
+    public function addMatchEnumRule(array $enum): self
+    {
+        $this->matchEnumRule->setEnum($enum);
+        $this->rules[$this->matchEnumRule->getName()] = $this->matchEnumRule;
+
+        return $this;
     }
 
     /**
@@ -78,7 +98,7 @@ class InputText extends InputAbstract
     public function addMatchFieldValueRule(FieldInterface $field): self
     {
         $this->matchFieldValueRule->setFieldToMatch($field);
-        $this->rules[] = $this->matchFieldValueRule;
+        $this->rules[$this->matchFieldValueRule->getName()] = $this->matchFieldValueRule;
 
         return $this;
     }
@@ -90,7 +110,7 @@ class InputText extends InputAbstract
     public function addMatchValueRule($value): self
     {
         $this->matchValueRule->setValue($value);
-        $this->rules[] = $this->matchValueRule;
+        $this->rules[$this->matchValueRule->getName()] = $this->matchValueRule;
 
         return $this;
     }
@@ -180,7 +200,7 @@ class InputText extends InputAbstract
      */
     private function addMaxLengthRule(): void
     {
-        $this->rules[] = $this->maxLengthRule;
+        $this->rules[$this->maxLengthRule->getName()] = $this->maxLengthRule;
     }
 
     /**
@@ -188,6 +208,6 @@ class InputText extends InputAbstract
      */
     private function addMinLengthRule(): void
     {
-        $this->rules[] = $this->minLengthRule;
+        $this->rules[$this->minLengthRule->getName()] = $this->minLengthRule;
     }
 }

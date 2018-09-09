@@ -1,6 +1,2 @@
-- add example/test CustomRule
-- add example/test MatchValueRule
-- add MaxFileSizeRule
-- add MatchEnumRule
-- connect MatchEnumRule to InputRadio->options
-- refactor InputNumber->setValue to accept only integer - don't typecast (validate data types on FormAbstract->setValues)
+- add examples for all possible rules to all fields
+- test everything

@@ -3,12 +3,18 @@
 namespace Ironex\Form\Field\Input\Factory;
 
 use Ironex\Form\Field\Input\InputHidden;
+use Ironex\Form\Field\Rule\MatchEnumRule;
 use Ironex\Form\Field\Rule\MatchFieldValueRule;
 use Ironex\Form\Field\Rule\MatchValueRule;
 use Ironex\FormBuilder;
 
 class InputHiddenFactory extends InputFactoryAbstract
 {
+    /**
+     * @var MatchEnumRule
+     */
+    private $matchEnumRule;
+
     /**
      * @var MatchFieldValueRule
      */
@@ -27,7 +33,7 @@ class InputHiddenFactory extends InputFactoryAbstract
     {
         $this->init($formBuilder);
 
-        $inputHidden = new InputHidden($this->customRule, $this->requiredRule, $this->matchFieldValueRule, $this->matchValueRule);
+        $inputHidden = new InputHidden($this->customRule, $this->requiredRule, $this->matchEnumRule, $this->matchFieldValueRule, $this->matchValueRule);
 
         return $inputHidden;
     }
@@ -40,7 +46,8 @@ class InputHiddenFactory extends InputFactoryAbstract
     {
         parent::init($formBuilder);
 
-        $this->matchValueRule = $formBuilder->createMatchValueRule();
+        $this->matchEnumRule = $formBuilder->createMatchEnumRule();
         $this->matchFieldValueRule = $formBuilder->createMatchFieldValueRule();
+        $this->matchValueRule = $formBuilder->createMatchValueRule();
     }
 }

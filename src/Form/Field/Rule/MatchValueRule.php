@@ -20,7 +20,7 @@ class MatchValueRule extends RuleAbstract implements RuleInterface
         return strtr($this->errorMessage, [
             "{{fieldLabel}}" => $field->getLabel(),
             "{{fieldValue}}" => $field->getValue(),
-            "{{valueToMatch}}" => $this->value
+            "{{allowedValue}}" => $this->value
         ]);
     }
 
@@ -39,10 +39,6 @@ class MatchValueRule extends RuleAbstract implements RuleInterface
      */
     public function test($value): bool
     {
-        return $this->value === $value;
-    }
-
-    private function __clone()
-    {
+        return $this->value == $value;
     }
 }

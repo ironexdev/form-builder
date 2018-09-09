@@ -19,7 +19,7 @@ class MatchMimeTypeRule extends RuleAbstract implements RuleInterface
     {
         return strtr($this->errorMessage, [
             "{{fieldLabel}}" => $field->getLabel(),
-            "{{allowedMimeTypes}}" => implode(",", $this->allowedMimeTypes)
+            "{{allowedMimeTypes}}" => $this->constraint
         ]);
     }
 

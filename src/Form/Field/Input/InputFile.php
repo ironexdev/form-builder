@@ -4,6 +4,7 @@ namespace Ironex\Form\Field\Input;
 
 use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\MatchMimeTypeRule;
+use Ironex\Form\Field\Rule\MaxFileSizeRule;
 use Ironex\Form\Field\Rule\RequiredRule;
 
 class InputFile extends InputAbstract
@@ -24,21 +25,28 @@ class InputFile extends InputAbstract
     private $matchMimeTypeRule;
 
     /**
+     * @var MaxFileSizeRule
+     */
+    private $maxFileSizeRule;
+
+    /**
      * @var bool
      */
     private $multiple;
 
     /**
-     * InputCheckbox constructor.
+     * InputFile constructor.
      * @param CustomRule $customRule
      * @param RequiredRule $requiredRule
      * @param MatchMimeTypeRule $matchMimeTypeRule
+     * @param MaxFileSizeRule $maxFileSizeRule
      */
-    public function __construct(CustomRule $customRule, RequiredRule $requiredRule, MatchMimeTypeRule $matchMimeTypeRule)
+    public function __construct(CustomRule $customRule, RequiredRule $requiredRule, MatchMimeTypeRule $matchMimeTypeRule, MaxFileSizeRule $maxFileSizeRule)
     {
         $this->customRule = $customRule;
         $this->requiredRule = $requiredRule;
         $this->matchMimeTypeRule = $matchMimeTypeRule;
+        $this->maxFileSizeRule = $maxFileSizeRule;
     }
 
     /**
@@ -58,6 +66,19 @@ class InputFile extends InputAbstract
         $this->matchMimeTypeRule->setAllowedMimeTypes(explode(",", $accept));
         $this->addMatchMimeTypeRule();
         $this->accept = $accept;
+
+        return $this;
+    }
+
+    /**
+     * @param int $maxFileSize
+     * @return $this
+     */
+    public function addMaxFileSizeRule(int $maxFileSize): self
+    {
+        $this->maxFileSizeRule->setMaxFileSize($maxFileSize);
+
+        $this->rules[$this->maxFileSizeRule->getName()] = $this->maxFileSizeRule;
 
         return $this;
     }
@@ -94,6 +115,6 @@ class InputFile extends InputAbstract
      */
     private function addMatchMimeTypeRule(): void
     {
-        $this->rules[] = $this->matchMimeTypeRule;
+        $this->rules[$this->matchMimeTypeRule->getName()] = $this->matchMimeTypeRule;
     }
 }

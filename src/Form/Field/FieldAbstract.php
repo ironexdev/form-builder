@@ -69,7 +69,7 @@ abstract class FieldAbstract implements FieldInterface
      */
     private function addRequiredRule() // : $this
     {
-        $this->rules[] = $this->requiredRule;
+        $this->rules[$this->requiredRule->getName()] = $this->requiredRule;
 
         return $this;
     }
@@ -83,7 +83,7 @@ abstract class FieldAbstract implements FieldInterface
     {
         $this->customRule->setClosure($closure);
         $this->customRule->setErrorMessage($errorMessage);
-        $this->rules[] = $this->customRule;
+        $this->rules[$this->customRule->getName()] = $this->customRule;
 
         return $this;
     }
@@ -198,9 +198,9 @@ abstract class FieldAbstract implements FieldInterface
     {
         $rules = [];
 
-        foreach ($this->rules as $rule)
+        foreach ($this->rules as $ruleName => $rule)
         {
-            $rules[$rule->getName()] = $rule->getConstraint();
+            $rules[$ruleName] = $rule->getConstraint();
         }
 
         return json_encode($rules);

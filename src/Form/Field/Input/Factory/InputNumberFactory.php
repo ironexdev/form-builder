@@ -3,6 +3,7 @@
 namespace Ironex\Form\Field\Input\Factory;
 
 use Ironex\Form\Field\Input\InputNumber;
+use Ironex\Form\Field\Rule\MatchEnumRule;
 use Ironex\Form\Field\Rule\MatchFieldValueRule;
 use Ironex\Form\Field\Rule\MatchValueRule;
 use Ironex\Form\Field\Rule\MaxValueRule;
@@ -12,9 +13,9 @@ use Ironex\FormBuilder;
 class InputNumberFactory extends InputFactoryAbstract
 {
     /**
-     * @var MaxValueRule
+     * @var MatchEnumRule
      */
-    private $maxValueRule;
+    private $matchEnumRule;
 
     /**
      * @var MatchFieldValueRule
@@ -25,6 +26,11 @@ class InputNumberFactory extends InputFactoryAbstract
      * @var MatchValueRule
      */
     private $matchValueRule;
+
+    /**
+     * @var MaxValueRule
+     */
+    private $maxValueRule;
 
     /**
      * @var MinValueRule
@@ -39,7 +45,7 @@ class InputNumberFactory extends InputFactoryAbstract
     {
         $this->init($formBuilder);
 
-        $inputNumber = new InputNumber($this->customRule, $this->requiredRule, $this->matchFieldValueRule, $this->matchValueRule, $this->maxValueRule, $this->minValueRule);
+        $inputNumber = new InputNumber($this->customRule, $this->requiredRule, $this->matchEnumRule, $this->matchFieldValueRule, $this->matchValueRule, $this->maxValueRule, $this->minValueRule);
 
         return $inputNumber;
     }
@@ -52,6 +58,7 @@ class InputNumberFactory extends InputFactoryAbstract
     {
         parent::init($formBuilder);
 
+        $this->matchEnumRule = $formBuilder->createMatchEnumRule();
         $this->matchValueRule = $formBuilder->createMatchValueRule();
         $this->matchFieldValueRule = $formBuilder->createMatchFieldValueRule();
         $this->maxValueRule = $formBuilder->createMaxValueRule();

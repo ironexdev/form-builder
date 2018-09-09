@@ -4,6 +4,7 @@ namespace Ironex\Form\Field\Input\Factory;
 
 use Ironex\Form\Field\Input\InputFile;
 use Ironex\Form\Field\Rule\MatchMimeTypeRule;
+use Ironex\Form\Field\Rule\MaxFileSizeRule;
 use Ironex\FormBuilder;
 
 class InputFileFactory extends InputFactoryAbstract
@@ -14,6 +15,11 @@ class InputFileFactory extends InputFactoryAbstract
     private $matchMimeTypeRule;
 
     /**
+     * @var MaxFileSizeRule
+     */
+    private $maxFileSizeRule;
+
+    /**
      * @param FormBuilder $formBuilder
      * @return InputFile
      */
@@ -21,7 +27,7 @@ class InputFileFactory extends InputFactoryAbstract
     {
         $this->init($formBuilder);
 
-        $inputFile = new InputFile($this->customRule, $this->requiredRule, $this->matchMimeTypeRule);
+        $inputFile = new InputFile($this->customRule, $this->requiredRule, $this->matchMimeTypeRule, $this->maxFileSizeRule);
 
         return $inputFile;
     }
@@ -35,5 +41,6 @@ class InputFileFactory extends InputFactoryAbstract
         parent::init($formBuilder);
 
         $this->matchMimeTypeRule = $formBuilder->createMatchMimeTypeRule();
+        $this->maxFileSizeRule = $formBuilder->createMaxFileSizeRule();
     }
 }

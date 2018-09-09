@@ -77,7 +77,7 @@ class TextArea extends FieldAbstract implements FieldInterface
      */
     private function addMaxLengthRule(): void
     {
-        $this->rules[] = $this->maxLengthRule;
+        $this->rules[$this->maxLengthRule->getName()] = $this->maxLengthRule;
     }
 
     /**
@@ -106,7 +106,7 @@ class TextArea extends FieldAbstract implements FieldInterface
      */
     private function addMinLengthRule(): void
     {
-        $this->rules[] = $this->minLengthRule;
+        $this->rules[$this->minLengthRule->getName()] = $this->minLengthRule;
     }
 
     /**

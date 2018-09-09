@@ -20,17 +20,21 @@ use Ironex\Form\Field\Input\InputSubmit;
 use Ironex\Form\Field\Input\InputText;
 use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\Factory\CustomRuleFactory;
+use Ironex\Form\Field\Rule\Factory\MatchEnumRuleFactory;
 use Ironex\Form\Field\Rule\Factory\MatchFieldValueRuleFactory;
 use Ironex\Form\Field\Rule\Factory\MatchMimeTypeRuleFactory;
 use Ironex\Form\Field\Rule\Factory\MatchValueRuleFactory;
+use Ironex\Form\Field\Rule\Factory\MaxFileSizeRuleFactory;
 use Ironex\Form\Field\Rule\Factory\MaxLengthRuleFactory;
 use Ironex\Form\Field\Rule\Factory\MaxValueRuleFactory;
 use Ironex\Form\Field\Rule\Factory\MinLengthRuleFactory;
 use Ironex\Form\Field\Rule\Factory\MinValueRuleFactory;
 use Ironex\Form\Field\Rule\Factory\RequiredRuleFactory;
+use Ironex\Form\Field\Rule\MatchEnumRule;
 use Ironex\Form\Field\Rule\MatchFieldValueRule;
 use Ironex\Form\Field\Rule\MatchMimeTypeRule;
 use Ironex\Form\Field\Rule\MatchValueRule;
+use Ironex\Form\Field\Rule\MaxFileSizeRule;
 use Ironex\Form\Field\Rule\MaxLengthRule;
 use Ironex\Form\Field\Rule\MaxValueRule;
 use Ironex\Form\Field\Rule\MinLengthRule;
@@ -93,6 +97,12 @@ class FormBuilder
 
     /**
      * @inject
+     * @var MatchEnumRuleFactory
+     */
+    protected $matchEnumRuleFactory;
+
+    /**
+     * @inject
      * @var MatchFieldValueRuleFactory
      */
     protected $matchFieldValueRuleFactory;
@@ -108,6 +118,12 @@ class FormBuilder
      * @var MatchValueRuleFactory
      */
     protected $matchValueRuleFactory;
+
+    /**
+     * @inject
+     * @var MaxFileSizeRuleFactory
+     */
+    protected $maxFileSizeRuleFactory;
 
     /**
      * @inject
@@ -264,12 +280,23 @@ class FormBuilder
     }
 
     /**
+     * @return MatchEnumRule
+     */
+    public function createMatchEnumRule(): MatchEnumRule
+    {
+        $matchEnumRule = $this->matchEnumRuleFactory->create();
+        $matchEnumRule->setErrorMessage("{{fieldLabel}} field value ({{fieldValue}}) has to match one of following values: {{allowedValues}}.");
+
+        return $matchEnumRule;
+    }
+
+    /**
      * @return MatchFieldValueRule
      */
     public function createMatchFieldValueRule(): MatchFieldValueRule
     {
         $matchFieldValueRule = $this->matchFieldValueRuleFactory->create();
-        $matchFieldValueRule->setErrorMessage("{{fieldLabel}} field value ({{fieldValue}}) has to match {{fieldToMatchLabel}} field value ({{fieldToMatchValue}})");
+        $matchFieldValueRule->setErrorMessage("{{fieldLabel}} field value ({{fieldValue}}) has to match {{fieldToMatchLabel}} field value ({{fieldToMatchValue}}).");
 
         return $matchFieldValueRule;
     }
@@ -280,7 +307,7 @@ class FormBuilder
     public function createMatchMimeTypeRule(): MatchMimeTypeRule
     {
         $matchMimeTypeRule = $this->matchMimeTypeRuleFactory->create();
-        $matchMimeTypeRule->setErrorMessage("{{fieldLabel}} field can only contain file/s matching {{allowedMimeTypes}} type/s");
+        $matchMimeTypeRule->setErrorMessage("{{fieldLabel}} field can only contain file/s matching {{allowedMimeTypes}} type/s.");
 
         return $matchMimeTypeRule;
     }
@@ -291,9 +318,20 @@ class FormBuilder
     public function createMatchValueRule(): MatchValueRule
     {
         $matchValueRule = $this->matchValueRuleFactory->create();
-        $matchValueRule->setErrorMessage("{{fieldLabel}} field value ({{fieldValue}}) has to match {{valueToMatch}} value");
+        $matchValueRule->setErrorMessage("{{fieldLabel}} field value ({{fieldValue}}) has to match {{allowedValue}} value.");
 
         return $matchValueRule;
+    }
+
+    /**
+     * @return MaxFileSizeRule
+     */
+    public function createMaxFileSizeRule(): MaxFileSizeRule
+    {
+        $maxFileSizeRule = $this->maxFileSizeRuleFactory->create();
+        $maxFileSizeRule->setErrorMessage("Size of uploaded file/s is {{fieldFileSize}} bytes which exceeds maximum allowed values of {{maxFileSize}} bytes.");
+
+        return $maxFileSizeRule;
     }
 
     /**
@@ -302,7 +340,7 @@ class FormBuilder
     public function createMaxLengthRule(): MaxLengthRule
     {
         $maxLengthRule = $this->maxLengthRuleFactory->create();
-        $maxLengthRule->setErrorMessage("length of {{fieldLabel}} field value ({{fieldValue}} - {{fieldValueLength}}) has to be at most {{maxLength}}");
+        $maxLengthRule->setErrorMessage("Length of {{fieldLabel}} field value ({{fieldValue}} - {{fieldValueLength}}) has to be at most {{maxLength}}.");
 
         return $maxLengthRule;
     }
@@ -313,7 +351,7 @@ class FormBuilder
     public function createMaxValueRule(): MaxValueRule
     {
         $maxValueRule = $this->maxValueRuleFactory->create();
-        $maxValueRule->setErrorMessage("{{fieldLabel}} field value ({{fieldValue}}) has to be lower or equal to {{maxValue}}");
+        $maxValueRule->setErrorMessage("{{fieldLabel}} field value ({{fieldValue}}) has to be lower or equal to {{maxValue}}.");
 
         return $maxValueRule;
     }
@@ -324,7 +362,7 @@ class FormBuilder
     public function createMinLengthRule(): MinLengthRule
     {
         $minLengthRule = $this->minLengthRuleFactory->create();
-        $minLengthRule->setErrorMessage("length of {{fieldLabel}} field value ({{fieldValue}} - {{fieldValueLength}}) has to be at least {{minLength}}");
+        $minLengthRule->setErrorMessage("Length of {{fieldLabel}} field value ({{fieldValue}} - {{fieldValueLength}}) has to be at least {{minLength}}.");
 
         return $minLengthRule;
     }
@@ -335,7 +373,7 @@ class FormBuilder
     public function createMinValueRule(): MinValueRule
     {
         $minValueRule = $this->minValueRuleFactory->create();
-        $minValueRule->setErrorMessage("{{fieldLabel}} field value ({{fieldValue}}) has to be lower or equal to {{minValue}}");
+        $minValueRule->setErrorMessage("{{fieldLabel}} field value ({{fieldValue}}) has to be lower or equal to {{minValue}}.");
 
         return $minValueRule;
     }
@@ -346,7 +384,7 @@ class FormBuilder
     public function createRequiredRule(): RequiredRule
     {
         $requiredRule = $this->requiredRuleFactory->create();
-        $requiredRule->setErrorMessage("{{fieldLabel}} is required");
+        $requiredRule->setErrorMessage("{{fieldLabel}} is required.");
 
         return $requiredRule;
     }

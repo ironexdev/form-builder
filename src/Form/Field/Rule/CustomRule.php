@@ -3,6 +3,7 @@
 namespace Ironex\Form\Field\Rule;
 
 use Closure;
+use Ironex\Form\Field\FieldInterface;
 
 class CustomRule extends RuleAbstract implements RuleInterface
 {
@@ -10,6 +11,17 @@ class CustomRule extends RuleAbstract implements RuleInterface
      * @var Closure
      */
     private $closure;
+
+    /**
+     * @param FieldInterface $field
+     * @return string
+     */
+    public function getErrorMessage(FieldInterface $field): string
+    {
+        return strtr($this->errorMessage, [
+            "{{fieldValue}}" => $field->getValue()
+        ]);
+    }
 
     /**
      * @param Closure $closure

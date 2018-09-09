@@ -3,11 +3,17 @@
 namespace Ironex\Form\Field\Select\Factory;
 
 use Ironex\Form\Field\Factory\FieldFactoryAbstract;
+use Ironex\Form\Field\Rule\MatchEnumRule;
 use Ironex\Form\Field\Select\Select;
 use Ironex\FormBuilder;
 
 class SelectFactory extends FieldFactoryAbstract
 {
+    /**
+     * @var MatchEnumRule
+     */
+    private $matchEnumRule;
+
     /**
      * @inject
      * @var OptionFactory
@@ -22,8 +28,19 @@ class SelectFactory extends FieldFactoryAbstract
     {
         $this->init($formBuilder);
 
-        $inputText = new Select($this->customRule, $this->requiredRule, $this->optionFactory);
+        $inputText = new Select($this->customRule, $this->requiredRule, $this->matchEnumRule, $this->optionFactory);
 
         return $inputText;
+    }
+
+    /**
+     * @param FormBuilder $formBuilder
+     * @return void
+     */
+    protected function init(FormBuilder $formBuilder): void
+    {
+        parent::init($formBuilder);
+
+        $this->matchEnumRule = $formBuilder->createMatchEnumRule();
     }
 }
