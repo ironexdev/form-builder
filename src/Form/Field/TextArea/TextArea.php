@@ -73,14 +73,6 @@ class TextArea extends FieldAbstract implements FieldInterface
     }
 
     /**
-     * @return void
-     */
-    private function addMaxLengthRule(): void
-    {
-        $this->rules[$this->maxLengthRule->getName()] = $this->maxLengthRule;
-    }
-
-    /**
      * @return int
      */
     public function getMinLength(): int
@@ -102,14 +94,6 @@ class TextArea extends FieldAbstract implements FieldInterface
     }
 
     /**
-     * @return void
-     */
-    private function addMinLengthRule(): void
-    {
-        $this->rules[$this->minLengthRule->getName()] = $this->minLengthRule;
-    }
-
-    /**
      * @return string
      */
     public function getPlaceHolder(): string
@@ -126,5 +110,21 @@ class TextArea extends FieldAbstract implements FieldInterface
         $this->placeHolder = $placeHolder;
 
         return $this;
+    }
+
+    /**
+     * @return void
+     */
+    private function addMaxLengthRule(): void
+    {
+        $this->rules[$this->maxLengthRule->getName()] = $this->maxLengthRule;
+    }
+
+    /**
+     * @return void
+     */
+    private function addMinLengthRule(): void
+    {
+        $this->rules[$this->minLengthRule->getName()] = $this->minLengthRule;
     }
 }

@@ -31,7 +31,7 @@ class MatchFieldValueRule extends RuleAbstract implements RuleInterface
      */
     public function test($value): bool
     {
-        return $this->fieldToMatch->getValue() === $value;
+        return $this->fieldToMatch->getValue() == $value;
     }
 
     /**

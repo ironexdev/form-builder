@@ -107,85 +107,132 @@ class ExampleForm extends FormAbstract
      */
     public function init(): void
     {
+        $this->email = $this->customFormBuilder->createInputText("email");
+        $this->password = $this->customFormBuilder->createInputPassword("password");
+        $this->passwordRepeat = $this->customFormBuilder->createInputPassword("password-repeat");
+        $this->country = $this->customFormBuilder->createSelect("country");
+        $this->userCount = $this->customFormBuilder->createInputNumber("user-count");
+        $this->photo = $this->customFormBuilder->createInputFile("photo");
+        $this->plan = $this->customFormBuilder->createInputRadio("plan");
+        $this->termsAndConditions = $this->customFormBuilder->createInputCheckbox("tac");
+        $this->description = $this->customFormBuilder->createTextArea("description");
+        $this->csrfToken = $this->customFormBuilder->createInputHidden("csrf-token");
+        $this->submit = $this->customFormBuilder->createInputSubmit("submit");
+
         /* Email */
-        $this->email = $this->customFormBuilder->createInputText("email")
-                                               ->setLabel("Email")
-                                               ->setPlaceholder("name@example.com")
-                                               ->setMaxLength(255)
-                                               ->setMinLength(3)
-                                               ->addCustomRule((function($value)
-                                               {
-                                                   return strpos($value, "@") !== false ? true : false;
-                                               }), "Email field has to be contain a valid e-mail address ({{fieldValue}}).")
-                                               ->addMatchValueRule("name@example.com")
-                                               ->setRequired(true);
+        $this->email->setLabel("Email")
+                    ->setMaxLength(255)
+                    ->setMinLength(3)
+                    ->setPlaceholder("name@example.com")
+                    ->setRequired(true)
+                    ->addCustomRule((function($value)
+                    {
+                        return strpos($value, "@") !== false ? true : false;
+                    }), "Email field has to be contain a valid e-mail address ({{fieldValue}}).")
+                    ->addMatchEnumRule([0, 12345678])
+                    ->addMatchFieldValueRule($this->password)
+                    ->addMatchValueRule("name@example.com");
 
         /* Password */
-        $this->password = $this->customFormBuilder->createInputPassword("password")
-                                                  ->setLabel("Password")
-                                                  ->setPlaceholder("8-64 characters")
-                                                  ->setMaxLength(64)
-                                                  ->setMinLength(8)
-                                                  ->setRequired(true);
+        $this->password->setLabel("Password")
+                       ->setMaxLength(64)
+                       ->setMinLength(8)
+                       ->setPlaceholder("8-64 characters")
+                       ->setRequired(true)
+                       ->addCustomRule((function($value)
+                       {
+                           return $value ? true : false;
+                       }), "");
 
         /* Password Repeat */
-        $this->passwordRepeat = $this->customFormBuilder->createInputPassword("password-repeat")
-                                                        ->setLabel("Password repeat")
-                                                        ->setPlaceholder("Repeat password")
-                                                        ->setMaxLength(64)
-                                                        ->setMinLength(8)
-                                                        ->addMatchFieldValueRule($this->password)
-                                                        ->setRequired(true);
+        $this->passwordRepeat->setLabel("Password repeat")
+                             ->setMaxLength(64)
+                             ->setMinLength(8)
+                             ->setPlaceholder("Repeat password")
+                             ->setRequired(true)
+                             ->addCustomRule((function($value)
+                             {
+                                 return $value ? true : false;
+                             }), "")
+                             ->addMatchFieldValueRule($this->password);
 
         /* Country */
-        $this->country = $this->customFormBuilder->createSelect("country")
-                                                 ->setLabel("Country")
-                                                 ->addOption("Select country", null, true, true)
-                                                 ->addOption("Czechia", 0)
-                                                 ->addOption("Slovakia2", 1)
-                                                 ->setRequired(true);
+        $this->country->setLabel("Country")
+                      ->setRequired(true)
+                      ->addOption("Select country", null, true, true)
+                      ->addOption("Czechia", 0)
+                      ->addOption("Slovakia2", 1);
 
         /* User count */
-        $this->userCount = $this->customFormBuilder->createInputNumber("user-count")
-                                                   ->setLabel("User count")
-                                                   ->setPlaceHolder("10")
-                                                   ->setMax(1000)
-                                                   ->setMin(10)
-                                                   ->setRequired(true);
+        $this->userCount->setLabel("User count")
+                        ->setMax(1000)
+                        ->setMin(10)
+                        ->setPlaceHolder("10")
+                        ->setRequired(true)
+                        ->addCustomRule((function($value)
+                        {
+                            return $value ? true : false;
+                        }), "")
+                        ->addMatchEnumRule([0, 12345678])
+                        ->addMatchFieldValueRule($this->email)
+                        ->addMatchValueRule("name@example.com");
 
         /* Photo */
-        $this->photo = $this->customFormBuilder->createInputFile("photo")
-                                               ->setLabel("Photo")
-                                               ->setAccept("image/jpeg")
-                                               ->addMaxFileSizeRule(100)
-                                               ->setMultiple(true);
+        $this->photo->setAccept("image/jpeg")
+                    ->setLabel("Photo")
+                    ->setMultiple(true)
+                    ->setRequired(true)
+                    ->addCustomRule((function($value)
+                    {
+                        return $value ? true : false;
+                    }), "")
+                    ->addMaxFileSizeRule(100);
 
         /* Plan */
-        $this->plan = $this->customFormBuilder->createInputRadio("plan")
-                                              ->setLabel("Plan")
-                                              ->addOption(true, "Standard", 0)
-                                              ->addOption(false, "Ultimate", 1)
-                                              ->setRequired(true);
+        $this->plan->setLabel("Plan")
+                   ->setRequired(true)
+                   ->addOption(true, "Standard", 0)
+                   ->addOption(false, "Ultimate", 1)
+                   ->addCustomRule((function($value)
+                   {
+                       return $value ? true : false;
+                   }), "");
 
         /* Terms and Conditions */
-        $this->termsAndConditions = $this->customFormBuilder->createInputCheckbox("tac")
-                                                            ->setLabel("Terms and Conditions")
-                                                            ->setRequired(true);
+        $this->termsAndConditions->setLabel("Terms and Conditions")
+                                 ->setRequired(true)
+                                 ->addCustomRule((function($value)
+                                 {
+                                     return $value ? true : false;
+                                 }), "");
 
         /* Description */
-        $this->description = $this->customFormBuilder->createTextArea("description")
-                                                     ->setLabel("Description")
-                                                     ->setMaxLength(1064)
-                                                     ->setMinLength(1)
-                                                     ->setPlaceholder("Description");
+        $this->description->setLabel("Description")
+                          ->setMaxLength(1064)
+                          ->setMinLength(1)
+                          ->setPlaceholder("Description")
+                          ->setRequired(true)
+                          ->addCustomRule((function($value)
+                          {
+                              return $value ? true : false;
+                          }), "");
 
         /* CSRF Token */
-        $this->csrfToken = $this->customFormBuilder->createInputHidden("csrf-token")
-                                                   ->setRequired(true);
+        $this->csrfToken->setRequired(true)
+                        ->addMatchEnumRule([0, 12345678])
+                        ->addMatchFieldValueRule($this->email)
+                        ->addMatchValueRule("name@example.com")
+                        ->addCustomRule((function($value)
+                        {
+                            return $value ? true : false;
+                        }), "");
 
         /* Submit */
-        $this->submit = $this->customFormBuilder->createInputSubmit("submit")
-                                                ->setLabel("Submit")
-                                                ->setRequired(true);
+        $this->submit->setLabel("Submit")
+                     ->setRequired(true)
+                     ->addCustomRule((function($value)
+                     {
+                         return $value ? true : false;
+                     }), "");
     }
 }

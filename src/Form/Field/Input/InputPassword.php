@@ -6,7 +6,6 @@ use Ironex\Form\Field\FieldInterface;
 use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\MatchEnumRule;
 use Ironex\Form\Field\Rule\MatchFieldValueRule;
-use Ironex\Form\Field\Rule\MatchValueRule;
 use Ironex\Form\Field\Rule\MaxLengthRule;
 use Ironex\Form\Field\Rule\MinLengthRule;
 use Ironex\Form\Field\Rule\RequiredRule;
@@ -22,11 +21,6 @@ class InputPassword extends InputAbstract
      * @var MatchFieldValueRule
      */
     protected $matchFieldValueRule;
-
-    /**
-     * @var MatchValueRule
-     */
-    protected $matchValueRule;
 
     /**
      * @var MaxLengthRule
@@ -64,17 +58,15 @@ class InputPassword extends InputAbstract
      * @param RequiredRule $requiredRule
      * @param MatchEnumRule $matchEnumRule
      * @param MatchFieldValueRule $matchFieldValueRule
-     * @param MatchValueRule $matchValueRule
      * @param MaxLengthRule $maxLengthRule
      * @param MinLengthRule $minLengthRule
      */
-    public function __construct(CustomRule $customRule, RequiredRule $requiredRule, MatchEnumRule $matchEnumRule, MatchFieldValueRule $matchFieldValueRule, MatchValueRule $matchValueRule, MaxLengthRule $maxLengthRule, MinLengthRule $minLengthRule)
+    public function __construct(CustomRule $customRule, RequiredRule $requiredRule, MatchEnumRule $matchEnumRule, MatchFieldValueRule $matchFieldValueRule, MaxLengthRule $maxLengthRule, MinLengthRule $minLengthRule)
     {
         $this->customRule = $customRule;
         $this->requiredRule = $requiredRule;
         $this->matchEnumRule = $matchEnumRule;
         $this->matchFieldValueRule = $matchFieldValueRule;
-        $this->matchValueRule = $matchValueRule;
         $this->maxLengthRule = $maxLengthRule;
         $this->minLengthRule = $minLengthRule;
     }
@@ -87,18 +79,6 @@ class InputPassword extends InputAbstract
     {
         $this->matchFieldValueRule->setFieldToMatch($field);
         $this->rules[$this->matchFieldValueRule->getName()] = $this->matchFieldValueRule;
-
-        return $this;
-    }
-
-    /**
-     * @param $value
-     * @return $this
-     */
-    public function addMatchValueRule($value): self
-    {
-        $this->matchValueRule->setValue($value);
-        $this->rules[$this->matchValueRule->getName()] = $this->matchValueRule;
 
         return $this;
     }

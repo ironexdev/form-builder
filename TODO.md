@@ -1,2 +1,1 @@
-- add examples for all possible rules to all fields
 - test everything

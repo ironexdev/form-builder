@@ -45,7 +45,7 @@ class MatchMimeTypeRule extends RuleAbstract implements RuleInterface
 
             return in_array($mimeType, $this->allowedMimeTypes, true);
         }
-        else
+        else if (gettype($value["type"]) === "array")
         {
             foreach ($value["type"] as $mimeType)
             {
@@ -56,6 +56,10 @@ class MatchMimeTypeRule extends RuleAbstract implements RuleInterface
             }
 
             return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
