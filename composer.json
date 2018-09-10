@@ -16,5 +16,6 @@
     "php": ">=7.1.0",
     "php-di/php-di": "^6.0",
     "doctrine/annotations": "^1.6"
-  }
+  },
+  "version": "1.0.0"
 }
