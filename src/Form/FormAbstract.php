@@ -74,6 +74,11 @@ abstract class FormAbstract
     private $valid;
 
     /**
+     * @return void
+     */
+    abstract public function init(): void;
+
+    /**
      * @return array
      */
     public function getErrors(): array
