@@ -9,6 +9,7 @@ use Ironex\Form\Field\Input\InputFile;
 use Ironex\Form\Field\Input\InputHidden;
 use Ironex\Form\Field\Input\InputNumber;
 use Ironex\Form\Field\Input\InputRadio;
+use Ironex\Form\Field\Input\InputSubmit;
 use Ironex\Form\Field\Input\InputText;
 use Ironex\Form\Field\Select\Select;
 use Ironex\Form\Field\TextArea\TextArea;
@@ -89,7 +90,7 @@ class IndexController
         $csrfTokenFieldId = $this->exampleForm->getName() . "-" . $csrfTokenField->getName();
         $csrfTokenFieldValue = uniqid();
 
-        /** @var InputText $submitField */
+        /** @var InputSubmit $submitField */
         $submitField = $fields["submit"];
         $submitFieldId = $this->exampleForm->getName() . "-" . $submitField->getName();
 
