@@ -384,7 +384,7 @@ class FormBuilder
     public function createRequiredRule(): RequiredRule
     {
         $requiredRule = $this->requiredRuleFactory->create();
-        $requiredRule->setErrorMessage("{{fieldLabel}} is required.");
+        $requiredRule->setErrorMessage("{{fieldLabel}} field is required.");
 
         return $requiredRule;
     }
