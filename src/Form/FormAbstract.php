@@ -95,13 +95,12 @@ abstract class FormAbstract
     }
 
     /**
-     * @param $request
+     * @param RequestInterface $request
      * @throws BadRequestIronException
      * @throws MethodNotAllowedIronException
      */
-    public function setValues($request): void
+    public function setValues(RequestInterface $request): void
     {
-        /** @var RequestInterface $request */
         $requestBody = $request->getBody();
         $requestMethod = $request->getMethod();
 
