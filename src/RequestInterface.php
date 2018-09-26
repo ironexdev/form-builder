@@ -7,10 +7,15 @@ interface RequestInterface
     /**
      * @return array
      */
-    public function getBody(): array; // associative array, ie: $_GET, $_POST, etc ...
+    public function getBody(): array; // $_POST
 
     /**
      * @return string
      */
-    public function getMethod(): string; // POST, GET, etc ...
+    public function getMethod(): string; // POST or GET
+
+    /**
+     * @return array
+     */
+    public function getQuery(): array; // $_GET
 }

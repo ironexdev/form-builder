@@ -101,7 +101,7 @@ abstract class FormAbstract
      */
     public function setValues(RequestInterface $request): void
     {
-        $requestBody = $request->getBody();
+        $requestParameters = $request->getBody() ?: $request->getQuery();
         $requestMethod = $request->getMethod();
 
         if ($this->method !== $requestMethod)
@@ -109,7 +109,7 @@ abstract class FormAbstract
             throw new MethodNotAllowedIronException();
         }
 
-        foreach ($requestBody as $key => $value)
+        foreach ($requestParameters as $key => $value)
         {
             $field = $this->getFieldByName($key);
 
