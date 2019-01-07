@@ -5,7 +5,7 @@ namespace Ironex\Form\Field\Input;
 use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\RequiredRule;
 
-class InputSubmit extends InputAbstract
+class InputSubmit extends AbstractInput
 {
     /**
      * @var string

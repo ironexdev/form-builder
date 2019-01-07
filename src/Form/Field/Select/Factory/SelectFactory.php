@@ -2,12 +2,12 @@
 
 namespace Ironex\Form\Field\Select\Factory;
 
-use Ironex\Form\Field\Factory\FieldFactoryAbstract;
+use Ironex\Form\Field\Factory\AbstractFieldFactory;
 use Ironex\Form\Field\Rule\MatchEnumRule;
 use Ironex\Form\Field\Select\Select;
 use Ironex\FormBuilder;
 
-class SelectFactory extends FieldFactoryAbstract
+class SelectFactory extends AbstractFieldFactory
 {
     /**
      * @var MatchEnumRule

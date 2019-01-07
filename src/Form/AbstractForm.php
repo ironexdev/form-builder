@@ -10,7 +10,7 @@ use Ironex\RequestInterface;
 use ReflectionClass;
 use ReflectionException;
 
-abstract class FormAbstract
+abstract class AbstractForm
 {
     /**
      * @var string

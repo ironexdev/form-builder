@@ -5,7 +5,7 @@ namespace Ironex\Form\Field\Input;
 use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\RequiredRule;
 
-class InputCheckbox extends InputAbstract
+class InputCheckbox extends AbstractInput
 {
     /**
      * @var string

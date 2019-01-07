@@ -2,13 +2,13 @@
 
 namespace Ironex\Form\Field\TextArea\Factory;
 
-use Ironex\Form\Field\Factory\FieldFactoryAbstract;
+use Ironex\Form\Field\Factory\AbstractFieldFactory;
 use Ironex\Form\Field\Rule\MaxLengthRule;
 use Ironex\Form\Field\Rule\MinLengthRule;
 use Ironex\Form\Field\TextArea\TextArea;
 use Ironex\FormBuilder;
 
-class TextAreaFactory extends FieldFactoryAbstract
+class TextAreaFactory extends AbstractFieldFactory
 {
     /**
      * @var MaxLengthRule

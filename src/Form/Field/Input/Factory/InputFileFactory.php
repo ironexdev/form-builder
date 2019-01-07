@@ -7,7 +7,7 @@ use Ironex\Form\Field\Rule\MatchMimeTypeRule;
 use Ironex\Form\Field\Rule\MaxFileSizeRule;
 use Ironex\FormBuilder;
 
-class InputFileFactory extends InputFactoryAbstract
+class InputFileFactory extends AbstractInputFactory
 {
     /**
      * @var MatchMimeTypeRule

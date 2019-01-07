@@ -7,7 +7,7 @@ use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\RequiredRule;
 use Ironex\Form\Field\Rule\RuleInterface;
 
-abstract class FieldAbstract implements FieldInterface
+abstract class AbstractField implements FieldInterface
 {
     /**
      * @var CustomRule

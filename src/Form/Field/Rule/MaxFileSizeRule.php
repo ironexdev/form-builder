@@ -4,7 +4,7 @@ namespace Ironex\Form\Field\Rule;
 
 use Ironex\Form\Field\FieldInterface;
 
-class MaxFileSizeRule extends RuleAbstract implements RuleInterface
+class MaxFileSizeRule extends AbstractRule implements RuleInterface
 {
     /**
      * @var int

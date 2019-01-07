@@ -8,7 +8,7 @@ use Ironex\Form\Field\Rule\MatchEnumRule;
 use Ironex\Form\Field\Rule\MatchValueRule;
 use Ironex\Form\Field\Rule\RequiredRule;
 
-class InputRadio extends InputAbstract
+class InputRadio extends AbstractInput
 {
     /**
      * @var MatchEnumRule

@@ -11,7 +11,7 @@ use Ironex\Form\Field\Rule\MaxValueRule;
 use Ironex\Form\Field\Rule\MinValueRule;
 use Ironex\Form\Field\Rule\RequiredRule;
 
-class InputNumber extends InputAbstract
+class InputNumber extends AbstractInput
 {
     /**
      * @var MatchEnumRule

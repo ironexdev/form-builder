@@ -6,7 +6,7 @@ use Ironex\Form\Field\FieldInterface;
 use ReflectionClass;
 use ReflectionException;
 
-abstract class RuleAbstract implements RuleInterface
+abstract class AbstractRule implements RuleInterface
 {
     /**
      * @var mixed

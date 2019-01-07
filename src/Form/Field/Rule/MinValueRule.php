@@ -4,7 +4,7 @@ namespace Ironex\Form\Field\Rule;
 
 use Ironex\Form\Field\FieldInterface;
 
-class MinValueRule extends RuleAbstract implements RuleInterface
+class MinValueRule extends AbstractRule implements RuleInterface
 {
     /**
      * @var int

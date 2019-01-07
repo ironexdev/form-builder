@@ -5,7 +5,7 @@ namespace Ironex\Form\Field\Input\Factory;
 use Ironex\Form\Field\Input\InputCheckbox;
 use Ironex\FormBuilder;
 
-class InputCheckboxFactory extends InputFactoryAbstract
+class InputCheckboxFactory extends AbstractInputFactory
 {
     /**
      * @param FormBuilder $formBuilder

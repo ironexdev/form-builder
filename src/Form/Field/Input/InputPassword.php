@@ -10,7 +10,7 @@ use Ironex\Form\Field\Rule\MaxLengthRule;
 use Ironex\Form\Field\Rule\MinLengthRule;
 use Ironex\Form\Field\Rule\RequiredRule;
 
-class InputPassword extends InputAbstract
+class InputPassword extends AbstractInput
 {
     /**
      * @var MatchEnumRule

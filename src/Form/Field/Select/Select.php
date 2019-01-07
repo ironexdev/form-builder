@@ -2,14 +2,14 @@
 
 namespace Ironex\Form\Field\Select;
 
-use Ironex\Form\Field\FieldAbstract;
+use Ironex\Form\Field\AbstractField;
 use Ironex\Form\Field\FieldInterface;
 use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\MatchEnumRule;
 use Ironex\Form\Field\Rule\RequiredRule;
 use Ironex\Form\Field\Select\Factory\OptionFactory;
 
-class Select extends FieldAbstract implements FieldInterface
+class Select extends AbstractField implements FieldInterface
 {
     /**
      * @var MatchEnumRule

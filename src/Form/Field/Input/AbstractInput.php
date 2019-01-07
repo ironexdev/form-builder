@@ -2,9 +2,9 @@
 
 namespace Ironex\Form\Field\Input;
 
-use Ironex\Form\Field\FieldAbstract;
+use Ironex\Form\Field\AbstractField;
 
-abstract class InputAbstract extends FieldAbstract
+abstract class AbstractInput extends AbstractField
 {
     /**
      * @var string

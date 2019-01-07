@@ -10,7 +10,7 @@ use Ironex\Form\Field\Rule\MaxValueRule;
 use Ironex\Form\Field\Rule\MinValueRule;
 use Ironex\FormBuilder;
 
-class InputNumberFactory extends InputFactoryAbstract
+class InputNumberFactory extends AbstractInputFactory
 {
     /**
      * @var MatchEnumRule

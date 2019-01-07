@@ -5,7 +5,7 @@ namespace Ironex\Form\Field\Input\Factory;
 use Ironex\Form\Field\Input\InputSubmit;
 use Ironex\FormBuilder;
 
-class InputSubmitFactory extends InputFactoryAbstract
+class InputSubmitFactory extends AbstractInputFactory
 {
     /**
      * @param FormBuilder $formBuilder

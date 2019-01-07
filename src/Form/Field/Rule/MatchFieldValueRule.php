@@ -4,7 +4,7 @@ namespace Ironex\Form\Field\Rule;
 
 use Ironex\Form\Field\FieldInterface;
 
-class MatchFieldValueRule extends RuleAbstract implements RuleInterface
+class MatchFieldValueRule extends AbstractRule implements RuleInterface
 {
     /**
      * @var FieldInterface

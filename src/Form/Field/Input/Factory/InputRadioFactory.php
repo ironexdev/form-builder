@@ -7,7 +7,7 @@ use Ironex\Form\Field\Rule\MatchEnumRule;
 use Ironex\Form\Field\Rule\MatchValueRule;
 use Ironex\FormBuilder;
 
-class InputRadioFactory extends InputFactoryAbstract
+class InputRadioFactory extends AbstractInputFactory
 {
     /**
      * @inject

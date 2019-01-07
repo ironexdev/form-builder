@@ -4,7 +4,7 @@ namespace Ironex\Form\Field\Rule;
 
 use Ironex\Form\Field\FieldInterface;
 
-class RequiredRule extends RuleAbstract implements RuleInterface
+class RequiredRule extends AbstractRule implements RuleInterface
 {
     /**
      * @var mixed

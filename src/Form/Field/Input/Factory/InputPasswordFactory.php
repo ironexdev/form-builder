@@ -9,7 +9,7 @@ use Ironex\Form\Field\Rule\MaxLengthRule;
 use Ironex\Form\Field\Rule\MinLengthRule;
 use Ironex\FormBuilder;
 
-class InputPasswordFactory extends InputFactoryAbstract
+class InputPasswordFactory extends AbstractInputFactory
 {
     /**
      * @var MatchEnumRule

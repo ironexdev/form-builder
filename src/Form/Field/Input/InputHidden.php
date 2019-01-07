@@ -9,7 +9,7 @@ use Ironex\Form\Field\Rule\MatchFieldValueRule;
 use Ironex\Form\Field\Rule\MatchValueRule;
 use Ironex\Form\Field\Rule\RequiredRule;
 
-class InputHidden extends InputAbstract
+class InputHidden extends AbstractInput
 {
     /**
      * @var MatchEnumRule

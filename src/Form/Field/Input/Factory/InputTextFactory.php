@@ -10,7 +10,7 @@ use Ironex\Form\Field\Rule\MaxLengthRule;
 use Ironex\Form\Field\Rule\MinLengthRule;
 use Ironex\FormBuilder;
 
-class InputTextFactory extends InputFactoryAbstract
+class InputTextFactory extends AbstractInputFactory
 {
     /**
      * @var MatchEnumRule

@@ -5,7 +5,7 @@ namespace Ironex\Form\Field\Rule;
 use Closure;
 use Ironex\Form\Field\FieldInterface;
 
-class CustomRule extends RuleAbstract implements RuleInterface
+class CustomRule extends AbstractRule implements RuleInterface
 {
     /**
      * @var Closure

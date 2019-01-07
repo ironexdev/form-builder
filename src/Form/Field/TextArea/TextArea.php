@@ -2,14 +2,14 @@
 
 namespace Ironex\Form\Field\TextArea;
 
-use Ironex\Form\Field\FieldAbstract;
+use Ironex\Form\Field\AbstractField;
 use Ironex\Form\Field\FieldInterface;
 use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\MaxLengthRule;
 use Ironex\Form\Field\Rule\MinLengthRule;
 use Ironex\Form\Field\Rule\RequiredRule;
 
-class TextArea extends FieldAbstract implements FieldInterface
+class TextArea extends AbstractField implements FieldInterface
 {
     /**
      * @var MaxLengthRule

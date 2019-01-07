@@ -7,7 +7,7 @@ use Ironex\Form\Field\Rule\MatchMimeTypeRule;
 use Ironex\Form\Field\Rule\MaxFileSizeRule;
 use Ironex\Form\Field\Rule\RequiredRule;
 
-class InputFile extends InputAbstract
+class InputFile extends AbstractInput
 {
     /**
      * @var string

@@ -12,9 +12,9 @@ use Ironex\Form\Field\Input\InputSubmit;
 use Ironex\Form\Field\Input\InputText;
 use Ironex\Form\Field\Select\Select;
 use Ironex\Form\Field\TextArea\TextArea;
-use Ironex\Form\FormAbstract;
+use Ironex\Form\AbstractForm;
 
-class ExampleForm extends FormAbstract
+class ExampleForm extends AbstractForm
 {
     /**
      * @var string

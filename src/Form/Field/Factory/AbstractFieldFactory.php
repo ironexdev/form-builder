@@ -6,7 +6,7 @@ use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\RequiredRule;
 use Ironex\FormBuilder;
 
-abstract class FieldFactoryAbstract
+abstract class AbstractFieldFactory
 {
     /**
      * @var CustomRule

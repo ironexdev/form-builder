@@ -8,7 +8,7 @@ use Ironex\Form\Field\Rule\MatchFieldValueRule;
 use Ironex\Form\Field\Rule\MatchValueRule;
 use Ironex\FormBuilder;
 
-class InputHiddenFactory extends InputFactoryAbstract
+class InputHiddenFactory extends AbstractInputFactory
 {
     /**
      * @var MatchEnumRule
