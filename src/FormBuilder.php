@@ -285,7 +285,7 @@ class FormBuilder
     public function createMatchEnumRule(): MatchEnumRule
     {
         $matchEnumRule = $this->matchEnumRuleFactory->create();
-        $matchEnumRule->setErrorMessage("{{fieldLabel}} field value has to match one of the following values: {{allowedValues}}.");
+        $matchEnumRule->setErrorMessage("value has to match one of the following values: {{allowedValues}}.");
 
         return $matchEnumRule;
     }
@@ -296,7 +296,7 @@ class FormBuilder
     public function createMatchFieldValueRule(): MatchFieldValueRule
     {
         $matchFieldValueRule = $this->matchFieldValueRuleFactory->create();
-        $matchFieldValueRule->setErrorMessage("{{fieldLabel}} field value has to match {{fieldToMatchLabel}} field value.");
+        $matchFieldValueRule->setErrorMessage("value has to match '{{fieldToMatchLabel}}' field value.");
 
         return $matchFieldValueRule;
     }
@@ -307,7 +307,7 @@ class FormBuilder
     public function createMatchMimeTypeRule(): MatchMimeTypeRule
     {
         $matchMimeTypeRule = $this->matchMimeTypeRuleFactory->create();
-        $matchMimeTypeRule->setErrorMessage("{{fieldLabel}} field can only contain file/s matching following mime type/s: {{allowedMimeTypes}}.");
+        $matchMimeTypeRule->setErrorMessage("field can only contain file/s matching following mime type/s: {{allowedMimeTypes}}.");
 
         return $matchMimeTypeRule;
     }
@@ -318,7 +318,7 @@ class FormBuilder
     public function createMatchValueRule(): MatchValueRule
     {
         $matchValueRule = $this->matchValueRuleFactory->create();
-        $matchValueRule->setErrorMessage("{{fieldLabel}} field value has to match {{allowedValue}}.");
+        $matchValueRule->setErrorMessage("field value has to match '{{allowedValue}}'.");
 
         return $matchValueRule;
     }
