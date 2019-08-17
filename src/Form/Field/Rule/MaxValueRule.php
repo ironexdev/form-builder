@@ -2,27 +2,12 @@
 
 namespace Ironex\Form\Field\Rule;
 
-use Ironex\Form\Field\FieldInterface;
-
 class MaxValueRule extends AbstractRule implements RuleInterface
 {
     /**
      * @var int
      */
     private $max;
-
-    /**
-     * @param FieldInterface $field
-     * @return string
-     */
-    public function getErrorMessage(FieldInterface $field): string
-    {
-        return strtr($this->errorMessage, [
-            "{{fieldLabel}}" => $field->getLabel(),
-            "{{fieldValue}}" => $field->getValue(),
-            "{{maxValue}}" => $this->max
-        ]);
-    }
 
     /**
      * @param int $max

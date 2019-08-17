@@ -2,26 +2,12 @@
 
 namespace Ironex\Form\Field\Rule;
 
-use Ironex\Form\Field\FieldInterface;
-
 class MatchMimeTypeRule extends AbstractRule implements RuleInterface
 {
     /**
      * @var array
      */
     private $allowedMimeTypes;
-
-    /**
-     * @param FieldInterface $field
-     * @return string
-     */
-    public function getErrorMessage(FieldInterface $field): string
-    {
-        return strtr($this->errorMessage, [
-            "{{fieldLabel}}" => $field->getLabel(),
-            "{{allowedMimeTypes}}" => $this->constraint
-        ]);
-    }
 
     /**
      * @param array $allowedMimeTypes

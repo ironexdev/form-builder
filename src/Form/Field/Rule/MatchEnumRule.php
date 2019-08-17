@@ -2,27 +2,12 @@
 
 namespace Ironex\Form\Field\Rule;
 
-use Ironex\Form\Field\FieldInterface;
-
 class MatchEnumRule extends AbstractRule implements RuleInterface
 {
     /**
      * @var array
      */
     private $enum = [];
-
-    /**
-     * @param FieldInterface $field
-     * @return string
-     */
-    public function getErrorMessage(FieldInterface $field): string
-    {
-        return strtr($this->errorMessage, [
-            "{{fieldLabel}}" => $field->getLabel(),
-            "{{fieldValue}}" => $field->getValue(),
-            "{{allowedValues}}" => $this->constraint
-        ]);
-    }
 
     /**
      * @param $value

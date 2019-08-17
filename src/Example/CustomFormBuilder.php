@@ -13,7 +13,6 @@ class CustomFormBuilder extends FormBuilder
     public function createMaxLengthRule(): MaxLengthRule
     {
         $maxLengthRule = $this->maxLengthRuleFactory->create();
-        $maxLengthRule->setErrorMessage("custom error message - check MaxLengthRule->getErrorMessage for available variables");
 
         return $maxLengthRule;
     }

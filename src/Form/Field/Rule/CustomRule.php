@@ -13,17 +13,6 @@ class CustomRule extends AbstractRule implements RuleInterface
     private $closure;
 
     /**
-     * @param FieldInterface $field
-     * @return string
-     */
-    public function getErrorMessage(FieldInterface $field): string
-    {
-        return strtr($this->errorMessage, [
-            "{{fieldValue}}" => $field->getValue()
-        ]);
-    }
-
-    /**
      * @param Closure $closure
      */
     public function setClosure(Closure $closure): void

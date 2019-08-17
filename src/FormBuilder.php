@@ -57,7 +57,7 @@ class FormBuilder
      * @inject
      * @var InputCheckboxFactory
      */
-    protected $InputCheckboxFactory;
+    protected $inputCheckboxFactory;
 
     /**
      * @inject
@@ -189,10 +189,10 @@ class FormBuilder
      */
     public function createInputCheckbox(string $name): InputCheckbox
     {
-        $InputCheckbox = $this->InputCheckboxFactory->create($this);
-        $InputCheckbox->setName($name);
+        $inputCheckbox = $this->inputCheckboxFactory->create($this);
+        $inputCheckbox->setName($name);
 
-        return $InputCheckbox;
+        return $inputCheckbox;
     }
 
     /**
@@ -285,7 +285,6 @@ class FormBuilder
     public function createMatchEnumRule(): MatchEnumRule
     {
         $matchEnumRule = $this->matchEnumRuleFactory->create();
-        $matchEnumRule->setErrorMessage("value has to match one of the following values: {{allowedValues}}.");
 
         return $matchEnumRule;
     }
@@ -296,7 +295,6 @@ class FormBuilder
     public function createMatchFieldValueRule(): MatchFieldValueRule
     {
         $matchFieldValueRule = $this->matchFieldValueRuleFactory->create();
-        $matchFieldValueRule->setErrorMessage("value has to match '{{fieldToMatchLabel}}' field value.");
 
         return $matchFieldValueRule;
     }
@@ -307,7 +305,6 @@ class FormBuilder
     public function createMatchMimeTypeRule(): MatchMimeTypeRule
     {
         $matchMimeTypeRule = $this->matchMimeTypeRuleFactory->create();
-        $matchMimeTypeRule->setErrorMessage("field can only contain file/s matching following mime type/s: {{allowedMimeTypes}}.");
 
         return $matchMimeTypeRule;
     }
@@ -318,7 +315,6 @@ class FormBuilder
     public function createMatchValueRule(): MatchValueRule
     {
         $matchValueRule = $this->matchValueRuleFactory->create();
-        $matchValueRule->setErrorMessage("field value has to match '{{allowedValue}}'.");
 
         return $matchValueRule;
     }
@@ -329,7 +325,6 @@ class FormBuilder
     public function createMaxFileSizeRule(): MaxFileSizeRule
     {
         $maxFileSizeRule = $this->maxFileSizeRuleFactory->create();
-        $maxFileSizeRule->setErrorMessage("Size of uploaded file/s is {{fieldFileSize}} bytes which exceeds maximum allowed size of {{maxFileSize}} byte/s.");
 
         return $maxFileSizeRule;
     }
@@ -340,7 +335,6 @@ class FormBuilder
     public function createMaxLengthRule(): MaxLengthRule
     {
         $maxLengthRule = $this->maxLengthRuleFactory->create();
-        $maxLengthRule->setErrorMessage("Length of {{fieldLabel}} field value has to be at most {{maxLength}}.");
 
         return $maxLengthRule;
     }
@@ -351,7 +345,6 @@ class FormBuilder
     public function createMaxValueRule(): MaxValueRule
     {
         $maxValueRule = $this->maxValueRuleFactory->create();
-        $maxValueRule->setErrorMessage("field value ({{fieldValue}}) has to be lower or equal to {{maxValue}}.");
 
         return $maxValueRule;
     }
@@ -362,7 +355,6 @@ class FormBuilder
     public function createMinLengthRule(): MinLengthRule
     {
         $minLengthRule = $this->minLengthRuleFactory->create();
-        $minLengthRule->setErrorMessage("field has to contain at least {{minLength}} character/s.");
 
         return $minLengthRule;
     }
@@ -373,7 +365,6 @@ class FormBuilder
     public function createMinValueRule(): MinValueRule
     {
         $minValueRule = $this->minValueRuleFactory->create();
-        $minValueRule->setErrorMessage("field value ({{fieldValue}}) has to be lower or equal to {{minValue}}.");
 
         return $minValueRule;
     }
@@ -384,7 +375,6 @@ class FormBuilder
     public function createRequiredRule(): RequiredRule
     {
         $requiredRule = $this->requiredRuleFactory->create();
-        $requiredRule->setErrorMessage("field is required.");
 
         return $requiredRule;
     }

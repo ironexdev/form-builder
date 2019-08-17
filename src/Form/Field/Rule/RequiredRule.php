@@ -2,25 +2,12 @@
 
 namespace Ironex\Form\Field\Rule;
 
-use Ironex\Form\Field\FieldInterface;
-
 class RequiredRule extends AbstractRule implements RuleInterface
 {
     /**
      * @var mixed
      */
     protected $constraint = true;
-
-    /**
-     * @param FieldInterface $field
-     * @return string
-     */
-    public function getErrorMessage(FieldInterface $field): string
-    {
-        return strtr($this->errorMessage, [
-            "{{fieldLabel}}" => $field->getLabel()
-        ]);
-    }
 
     /**
      * @param $value

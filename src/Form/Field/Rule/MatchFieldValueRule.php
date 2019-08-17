@@ -12,20 +12,6 @@ class MatchFieldValueRule extends AbstractRule implements RuleInterface
     private $fieldToMatch;
 
     /**
-     * @param FieldInterface $field
-     * @return string
-     */
-    public function getErrorMessage(FieldInterface $field): string
-    {
-        return strtr($this->errorMessage, [
-            "{{fieldLabel}}" => $field->getLabel(),
-            "{{fieldValue}}" => $field->getValue(),
-            "{{fieldToMatchLabel}}" => $this->fieldToMatch->getLabel(),
-            "{{fieldToMatchValue}}" => $this->fieldToMatch->getValue()
-        ]);
-    }
-
-    /**
      * @param $value
      * @return bool
      */

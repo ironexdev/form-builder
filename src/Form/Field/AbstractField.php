@@ -82,7 +82,6 @@ abstract class AbstractField implements FieldInterface
     public function addCustomRule(Closure $closure, string $errorMessage) // : $this
     {
         $this->customRule->setClosure($closure);
-        $this->customRule->setErrorMessage($errorMessage);
         $this->rules[$this->customRule->getName()] = $this->customRule;
 
         return $this;
@@ -233,7 +232,7 @@ abstract class AbstractField implements FieldInterface
             if (!$rule->test($this->value))
             {
                 $valid = false;
-                $this->errors[$rule->getName()] = $rule->getErrorMessage($this);
+                $this->errors[$rule->getName()] = $rule->getName();
             }
         }
 

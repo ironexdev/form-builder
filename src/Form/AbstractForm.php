@@ -2,6 +2,7 @@
 
 namespace Ironex\Form;
 
+use Error;
 use Ironex\Form\Field\FieldInterface;
 use Ironex\Exception\BadRequestIronException;
 use Ironex\Exception\MethodNotAllowedIronException;
@@ -168,7 +169,7 @@ abstract class AbstractForm
         }
         catch (ReflectionException $e)
         {
-            trigger_error("Reflection error - " . $e->getMessage() . " in <b>" . $e->getFile() . "</b> on " . $e->getLine() . " | triggered by catching ReflectionException ", E_USER_ERROR);
+            throw new Error($e->getMessage(), $e->getCode(), $e);
         }
 
         return $this->fields;
