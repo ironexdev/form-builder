@@ -21,6 +21,15 @@ class CustomRule extends AbstractRule implements RuleInterface
     }
 
     /**
+     * @param string $name
+     * @return void
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
      * @param $value
      * @return bool
      */

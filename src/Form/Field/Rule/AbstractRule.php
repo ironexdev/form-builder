@@ -16,7 +16,7 @@ abstract class AbstractRule implements RuleInterface
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
     public function __construct()
     {

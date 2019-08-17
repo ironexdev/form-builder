@@ -153,7 +153,7 @@ class ExampleForm extends AbstractForm
                              ->addCustomRule((function($value)
                              {
                                  return $value ? true : false;
-                             }), "")
+                             }), RuleNameEnum::IS_TRUE_CUSTOM_RULE)
                              ->addMatchFieldValueRule($this->password);
 
         /* Country */

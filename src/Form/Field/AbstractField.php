@@ -3,16 +3,16 @@
 namespace Ironex\Form\Field;
 
 use Closure;
-use Ironex\Form\Field\Rule\CustomRule;
+use Ironex\Form\Field\Rule\Factory\CustomRuleFactory;
 use Ironex\Form\Field\Rule\RequiredRule;
 use Ironex\Form\Field\Rule\RuleInterface;
 
 abstract class AbstractField implements FieldInterface
 {
     /**
-     * @var CustomRule
+     * @var CustomRuleFactory
      */
-    protected $customRule;
+    protected $customRuleFactory;
 
     /**
      * @var RequiredRule
@@ -76,13 +76,15 @@ abstract class AbstractField implements FieldInterface
 
     /**
      * @param Closure $closure
-     * @param string $errorMessage
+     * @param string $ruleName
      * @return $this
      */
-    public function addCustomRule(Closure $closure, string $errorMessage) // : $this
+    public function addCustomRule(Closure $closure, string $ruleName) // : $this
     {
-        $this->customRule->setClosure($closure);
-        $this->rules[$this->customRule->getName()] = $this->customRule;
+        $customRule = $this->customRuleFactory->create();
+        $customRule->setName($ruleName);
+        $customRule->setClosure($closure);
+        $this->rules[$customRule->getName()] = $customRule;
 
         return $this;
     }
