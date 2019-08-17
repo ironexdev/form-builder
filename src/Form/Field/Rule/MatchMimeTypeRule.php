@@ -10,6 +10,14 @@ class MatchMimeTypeRule extends AbstractRule implements RuleInterface
     private $allowedMimeTypes;
 
     /**
+     * @return array
+     */
+    public function getAllowedMimeTypes(): array
+    {
+        return $this->allowedMimeTypes;
+    }
+
+    /**
      * @param array $allowedMimeTypes
      * @return void
      */

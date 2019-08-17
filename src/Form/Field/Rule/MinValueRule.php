@@ -10,6 +10,14 @@ class MinValueRule extends AbstractRule implements RuleInterface
     private $min;
 
     /**
+     * @return int
+     */
+    public function getMin(): int
+    {
+        return $this->min;
+    }
+
+    /**
      * @param int $min
      */
     public function setMin(int $min): void

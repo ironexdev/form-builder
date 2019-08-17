@@ -10,6 +10,14 @@ class MaxFileSizeRule extends AbstractRule implements RuleInterface
     private $maxFileSize;
 
     /**
+     * @return int
+     */
+    public function getMaxFileSize(): int
+    {
+        return $this->maxFileSize;
+    }
+
+    /**
      * @param int $maxFileSize (bytes)
      */
     public function setMaxFileSize(int $maxFileSize): void

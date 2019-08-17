@@ -21,6 +21,14 @@ class MatchFieldValueRule extends AbstractRule implements RuleInterface
     }
 
     /**
+     * @return FieldInterface
+     */
+    public function getFieldToMatch(): FieldInterface
+    {
+        return $this->fieldToMatch;
+    }
+
+    /**
      * @param FieldInterface $field
      */
     public function setFieldToMatch(FieldInterface $field): void

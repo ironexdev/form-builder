@@ -10,6 +10,14 @@ class MinLengthRule extends AbstractRule implements RuleInterface
     private $minLength;
 
     /**
+     * @return int
+     */
+    public function getMinLength(): int
+    {
+        return $this->minLength;
+    }
+
+    /**
      * @param int $minLength
      */
     public function setMinLength(int $minLength): void

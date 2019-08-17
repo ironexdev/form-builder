@@ -19,6 +19,14 @@ class MaxLengthRule extends AbstractRule implements RuleInterface
     }
 
     /**
+     * @return int
+     */
+    public function getMaxLength(): int
+    {
+        return $this->maxLength;
+    }
+
+    /**
      * @param int $maxLength
      */
     public function setMaxLength(int $maxLength): void

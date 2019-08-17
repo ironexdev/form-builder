@@ -10,6 +10,14 @@ class MaxValueRule extends AbstractRule implements RuleInterface
     private $max;
 
     /**
+     * @return int
+     */
+    public function getMax(): int
+    {
+        return $this->max;
+    }
+
+    /**
      * @param int $max
      */
     public function setMax(int $max): void
