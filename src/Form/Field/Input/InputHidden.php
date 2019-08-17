@@ -3,7 +3,6 @@
 namespace Ironex\Form\Field\Input;
 
 use Ironex\Form\Field\FieldInterface;
-use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\MatchEnumRule;
 use Ironex\Form\Field\Rule\MatchFieldValueRule;
 use Ironex\Form\Field\Rule\MatchValueRule;
@@ -33,15 +32,13 @@ class InputHidden extends AbstractInput
 
     /**
      * InputCheckbox constructor.
-     * @param CustomRule $customRule
      * @param RequiredRule $requiredRule
      * @param MatchEnumRule $matchEnumRule
      * @param MatchFieldValueRule $matchFieldValueRule
      * @param MatchValueRule $matchValueRule
      */
-    public function __construct(CustomRule $customRule, RequiredRule $requiredRule, MatchEnumRule $matchEnumRule, MatchFieldValueRule $matchFieldValueRule, MatchValueRule $matchValueRule)
+    public function __construct(RequiredRule $requiredRule, MatchEnumRule $matchEnumRule, MatchFieldValueRule $matchFieldValueRule, MatchValueRule $matchValueRule)
     {
-        $this->customRule = $customRule;
         $this->requiredRule = $requiredRule;
         $this->matchEnumRule = $matchEnumRule;
         $this->matchFieldValueRule = $matchFieldValueRule;

@@ -45,7 +45,7 @@ class InputNumberFactory extends AbstractInputFactory
     {
         $this->init($formBuilder);
 
-        $inputNumber = new InputNumber($this->customRule, $this->requiredRule, $this->matchEnumRule, $this->matchFieldValueRule, $this->matchValueRule, $this->maxValueRule, $this->minValueRule);
+        $inputNumber = new InputNumber($this->requiredRule, $this->matchEnumRule, $this->matchFieldValueRule, $this->matchValueRule, $this->maxValueRule, $this->minValueRule);
 
         return $inputNumber;
     }

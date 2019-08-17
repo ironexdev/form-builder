@@ -18,7 +18,6 @@ use Ironex\Form\Field\Input\InputPassword;
 use Ironex\Form\Field\Input\InputRadio;
 use Ironex\Form\Field\Input\InputSubmit;
 use Ironex\Form\Field\Input\InputText;
-use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\Factory\CustomRuleFactory;
 use Ironex\Form\Field\Rule\Factory\MatchEnumRuleFactory;
 use Ironex\Form\Field\Rule\Factory\MatchFieldValueRuleFactory;
@@ -172,16 +171,6 @@ class FormBuilder
      * @var TextAreaFactory
      */
     protected $textAreaFactory;
-
-    /**
-     * @return CustomRule
-     */
-    public function createCustomRule(): CustomRule
-    {
-        $customRule = $this->customRuleFactory->create();
-
-        return $customRule;
-    }
 
     /**
      * @param string $name

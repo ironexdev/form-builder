@@ -3,7 +3,6 @@
 namespace Ironex\Form\Field\Input;
 
 use Ironex\Form\Field\FieldInterface;
-use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\MatchEnumRule;
 use Ironex\Form\Field\Rule\MatchFieldValueRule;
 use Ironex\Form\Field\Rule\MatchValueRule;
@@ -59,8 +58,7 @@ class InputText extends AbstractInput
     private $placeHolder;
 
     /**
-     * InputCheckbox constructor.
-     * @param CustomRule $customRule
+     * InputText constructor.
      * @param RequiredRule $requiredRule
      * @param MatchEnumRule $matchEnumRule
      * @param MatchFieldValueRule $matchFieldValueRule
@@ -68,9 +66,8 @@ class InputText extends AbstractInput
      * @param MaxLengthRule $maxLengthRule
      * @param MinLengthRule $minLengthRule
      */
-    public function __construct(CustomRule $customRule, RequiredRule $requiredRule, MatchEnumRule $matchEnumRule, MatchFieldValueRule $matchFieldValueRule, MatchValueRule $matchValueRule, MaxLengthRule $maxLengthRule, MinLengthRule $minLengthRule)
+    public function __construct(RequiredRule $requiredRule, MatchEnumRule $matchEnumRule, MatchFieldValueRule $matchFieldValueRule, MatchValueRule $matchValueRule, MaxLengthRule $maxLengthRule, MinLengthRule $minLengthRule)
     {
-        $this->customRule = $customRule;
         $this->requiredRule = $requiredRule;
         $this->matchEnumRule = $matchEnumRule;
         $this->matchFieldValueRule = $matchFieldValueRule;

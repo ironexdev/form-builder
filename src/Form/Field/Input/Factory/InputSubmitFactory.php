@@ -15,7 +15,7 @@ class InputSubmitFactory extends AbstractInputFactory
     {
         $this->init($formBuilder);
 
-        $inputSubmit = new InputSubmit($this->customRule, $this->requiredRule);
+        $inputSubmit = new InputSubmit($this->requiredRule);
 
         return $inputSubmit;
     }

@@ -2,7 +2,6 @@
 
 namespace Ironex\Form\Field\Input;
 
-use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\RequiredRule;
 
 class InputSubmit extends AbstractInput
@@ -14,12 +13,10 @@ class InputSubmit extends AbstractInput
 
     /**
      * InputCheckbox constructor.
-     * @param CustomRule $customRule
      * @param RequiredRule $requiredRule
      */
-    public function __construct(CustomRule $customRule, RequiredRule $requiredRule)
+    public function __construct(RequiredRule $requiredRule)
     {
-        $this->customRule = $customRule;
         $this->requiredRule = $requiredRule;
     }
 }

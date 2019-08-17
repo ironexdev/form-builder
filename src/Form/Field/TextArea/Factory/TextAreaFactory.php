@@ -28,7 +28,7 @@ class TextAreaFactory extends AbstractFieldFactory
     {
         $this->init($formBuilder);
 
-        $textArea = new TextArea($this->customRule, $this->requiredRule, $this->maxLengthRule, $this->minLengthRule);
+        $textArea = new TextArea($this->requiredRule, $this->maxLengthRule, $this->minLengthRule);
 
         return $textArea;
     }

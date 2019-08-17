@@ -2,7 +2,6 @@
 
 namespace Ironex\Form\Field\Input;
 
-use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\MatchMimeTypeRule;
 use Ironex\Form\Field\Rule\MaxFileSizeRule;
 use Ironex\Form\Field\Rule\RequiredRule;
@@ -36,14 +35,13 @@ class InputFile extends AbstractInput
 
     /**
      * InputFile constructor.
-     * @param CustomRule $customRule
      * @param RequiredRule $requiredRule
      * @param MatchMimeTypeRule $matchMimeTypeRule
      * @param MaxFileSizeRule $maxFileSizeRule
      */
-    public function __construct(CustomRule $customRule, RequiredRule $requiredRule, MatchMimeTypeRule $matchMimeTypeRule, MaxFileSizeRule $maxFileSizeRule)
+    public function __construct(RequiredRule $requiredRule, MatchMimeTypeRule $matchMimeTypeRule, MaxFileSizeRule $maxFileSizeRule)
     {
-        $this->customRule = $customRule;
+        ;
         $this->requiredRule = $requiredRule;
         $this->matchMimeTypeRule = $matchMimeTypeRule;
         $this->maxFileSizeRule = $maxFileSizeRule;

@@ -2,7 +2,6 @@
 
 namespace Ironex\Form;
 
-use Closure;
 use Error;
 use Ironex\Form\Field\FieldInterface;
 use Ironex\Exception\BadRequestIronException;

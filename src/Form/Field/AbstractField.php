@@ -237,7 +237,7 @@ abstract class AbstractField implements FieldInterface
                 $valid = false;
                 if ($translateError)
                 {
-                    $this->errors[$rule->getName()] = $translateError($rule->getName(), $this);
+                    $this->errors[$rule->getName()] = $translateError($rule, $this);
                 }
                 else
                 {

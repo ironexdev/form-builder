@@ -3,7 +3,6 @@
 namespace Ironex\Form\Field\Input;
 
 use Ironex\Form\Field\Input\Factory\InputRadioOptionFactory;
-use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\MatchEnumRule;
 use Ironex\Form\Field\Rule\MatchValueRule;
 use Ironex\Form\Field\Rule\RequiredRule;
@@ -37,15 +36,13 @@ class InputRadio extends AbstractInput
 
     /**
      * InputRadio constructor.
-     * @param CustomRule $customRule
      * @param RequiredRule $requiredRule
      * @param MatchEnumRule $matchEnumRule
      * @param MatchValueRule $matchValueRule
      * @param InputRadioOptionFactory $inputRadioOptionFactory
      */
-    public function __construct(CustomRule $customRule, RequiredRule $requiredRule, MatchEnumRule $matchEnumRule, MatchValueRule $matchValueRule, InputRadioOptionFactory $inputRadioOptionFactory)
+    public function __construct(RequiredRule $requiredRule, MatchEnumRule $matchEnumRule, MatchValueRule $matchValueRule, InputRadioOptionFactory $inputRadioOptionFactory)
     {
-        $this->customRule = $customRule;
         $this->requiredRule = $requiredRule;
         $this->matchEnumRule = $matchEnumRule;
         $this->matchValueRule = $matchValueRule;

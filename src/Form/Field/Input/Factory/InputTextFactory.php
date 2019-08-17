@@ -45,7 +45,7 @@ class InputTextFactory extends AbstractInputFactory
     {
         $this->init($formBuilder);
 
-        $inputText = new InputText($this->customRule, $this->requiredRule, $this->matchEnumRule, $this->matchFieldValueRule, $this->matchValueRule, $this->maxLengthRule, $this->minLengthRule);
+        $inputText = new InputText($this->requiredRule, $this->matchEnumRule, $this->matchFieldValueRule, $this->matchValueRule, $this->maxLengthRule, $this->minLengthRule);
 
         return $inputText;
     }

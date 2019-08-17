@@ -4,7 +4,6 @@ namespace Ironex\Form\Field\Select;
 
 use Ironex\Form\Field\AbstractField;
 use Ironex\Form\Field\FieldInterface;
-use Ironex\Form\Field\Rule\CustomRule;
 use Ironex\Form\Field\Rule\MatchEnumRule;
 use Ironex\Form\Field\Rule\RequiredRule;
 use Ironex\Form\Field\Select\Factory\OptionFactory;
@@ -28,14 +27,12 @@ class Select extends AbstractField implements FieldInterface
 
     /**
      * Select constructor.
-     * @param CustomRule $customRule
      * @param RequiredRule $requiredRule
      * @param MatchEnumRule $matchEnumRule
      * @param OptionFactory $optionFactory
      */
-    public function __construct(CustomRule $customRule, RequiredRule $requiredRule, MatchEnumRule $matchEnumRule, OptionFactory $optionFactory)
+    public function __construct(RequiredRule $requiredRule, MatchEnumRule $matchEnumRule, OptionFactory $optionFactory)
     {
-        $this->customRule = $customRule;
         $this->requiredRule = $requiredRule;
         $this->matchEnumRule = $matchEnumRule;
         $this->optionFactory = $optionFactory;

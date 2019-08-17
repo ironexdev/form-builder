@@ -15,7 +15,7 @@ class InputCheckboxFactory extends AbstractInputFactory
     {
         $this->init($formBuilder);
 
-        $inputCheckbox = new InputCheckbox($this->customRule, $this->requiredRule);
+        $inputCheckbox = new InputCheckbox($this->requiredRule);
 
         return $inputCheckbox;
     }
