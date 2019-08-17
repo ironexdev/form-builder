@@ -90,8 +90,8 @@ interface FieldInterface
     public function isValid(): bool;
 
     /**
-     * @param Closure|null $translateError
+     * @param callable|null $translateError
      * @return void
      */
-    public function validate(?Closure $translateError = null): void;
+    public function validate(?callable $translateError = null): void;
 }
