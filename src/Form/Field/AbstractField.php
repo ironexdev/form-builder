@@ -216,9 +216,10 @@ abstract class AbstractField implements FieldInterface
     }
 
     /**
+     * @param Closure|null $translateError
      * @return void
      */
-    public function validate(): void
+    public function validate(?Closure $translateError = null): void
     {
         $valid = true;
 
@@ -234,7 +235,14 @@ abstract class AbstractField implements FieldInterface
             if (!$rule->test($this->value))
             {
                 $valid = false;
-                $this->errors[$rule->getName()] = $rule->getName();
+                if ($translateError)
+                {
+                    $this->errors[$rule->getName()] = $translateError($rule->getName(), $this);
+                }
+                else
+                {
+                    $this->errors[$rule->getName()] = $rule->getName();
+                }
             }
         }
 

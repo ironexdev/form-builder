@@ -2,6 +2,7 @@
 
 namespace Ironex\Form;
 
+use Closure;
 use Error;
 use Ironex\Form\Field\FieldInterface;
 use Ironex\Exception\BadRequestIronException;
@@ -34,11 +35,6 @@ abstract class AbstractForm
     protected $enctype = "application/x-www-form-urlencoded";
 
     /**
-     * @var array
-     */
-    protected $errors = [];
-
-    /**
      * @inject
      * @var FormBuilder
      */
@@ -63,6 +59,11 @@ abstract class AbstractForm
      * @var string
      */
     protected $target = "_self";
+
+    /**
+     * @var array
+     */
+    private $errors = [];
 
     /**
      * @var array
@@ -272,15 +273,16 @@ abstract class AbstractForm
     }
 
     /**
+     * @param Closure|null $translateError
      * @return void
      */
-    public function validate(): void
+    public function validate(?Closure $translateError): void
     {
         $valid = true;
 
         foreach ($this->getFields() as $field)
         {
-            $field->validate();
+            $field->validate($translateError);
 
             if (!$field->isValid())
             {
