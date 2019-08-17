@@ -20,6 +20,14 @@ class MatchEnumRule extends AbstractRule implements RuleInterface
     }
 
     /**
+     * @return array
+     */
+    public function getEnum(): array
+    {
+        return $this->enum;
+    }
+
+    /**
      * @param array $enum
      * @return void
      */
