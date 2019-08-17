@@ -34,6 +34,11 @@ abstract class AbstractForm
     protected $enctype = "application/x-www-form-urlencoded";
 
     /**
+     * @var array
+     */
+    protected $errors = [];
+
+    /**
      * @inject
      * @var FormBuilder
      */
@@ -58,11 +63,6 @@ abstract class AbstractForm
      * @var string
      */
     protected $target = "_self";
-
-    /**
-     * @var array
-     */
-    private $errors = [];
 
     /**
      * @var array
