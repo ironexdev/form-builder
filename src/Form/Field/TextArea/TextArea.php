@@ -4,6 +4,7 @@ namespace Ironex\Form\Field\TextArea;
 
 use Ironex\Form\Field\AbstractField;
 use Ironex\Form\Field\FieldInterface;
+use Ironex\Form\Field\Rule\Factory\CustomRuleFactory;
 use Ironex\Form\Field\Rule\MaxLengthRule;
 use Ironex\Form\Field\Rule\MinLengthRule;
 use Ironex\Form\Field\Rule\RequiredRule;
@@ -37,13 +38,15 @@ class TextArea extends AbstractField implements FieldInterface
 
     /**
      * TextArea constructor.
+     * @param CustomRuleFactory $customRuleFactory
      * @param RequiredRule $requiredRule
      * @param MaxLengthRule $maxLengthRule
      * @param MinLengthRule $minLengthRule
      */
-    public function __construct(RequiredRule $requiredRule, MaxLengthRule $maxLengthRule, MinLengthRule $minLengthRule)
+    public function __construct(CustomRuleFactory $customRuleFactory, RequiredRule $requiredRule, MaxLengthRule $maxLengthRule, MinLengthRule $minLengthRule)
     {
-        $this->requiredRule = $requiredRule;
+        parent::__construct($customRuleFactory, $requiredRule);
+
         $this->maxLengthRule = $maxLengthRule;
         $this->minLengthRule = $minLengthRule;
     }

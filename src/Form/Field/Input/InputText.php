@@ -3,6 +3,7 @@
 namespace Ironex\Form\Field\Input;
 
 use Ironex\Form\Field\FieldInterface;
+use Ironex\Form\Field\Rule\Factory\CustomRuleFactory;
 use Ironex\Form\Field\Rule\MatchEnumRule;
 use Ironex\Form\Field\Rule\MatchFieldValueRule;
 use Ironex\Form\Field\Rule\MatchValueRule;
@@ -59,6 +60,7 @@ class InputText extends AbstractInput
 
     /**
      * InputText constructor.
+     * @param CustomRuleFactory $customRuleFactory
      * @param RequiredRule $requiredRule
      * @param MatchEnumRule $matchEnumRule
      * @param MatchFieldValueRule $matchFieldValueRule
@@ -66,9 +68,10 @@ class InputText extends AbstractInput
      * @param MaxLengthRule $maxLengthRule
      * @param MinLengthRule $minLengthRule
      */
-    public function __construct(RequiredRule $requiredRule, MatchEnumRule $matchEnumRule, MatchFieldValueRule $matchFieldValueRule, MatchValueRule $matchValueRule, MaxLengthRule $maxLengthRule, MinLengthRule $minLengthRule)
+    public function __construct(CustomRuleFactory $customRuleFactory, RequiredRule $requiredRule, MatchEnumRule $matchEnumRule, MatchFieldValueRule $matchFieldValueRule, MatchValueRule $matchValueRule, MaxLengthRule $maxLengthRule, MinLengthRule $minLengthRule)
     {
-        $this->requiredRule = $requiredRule;
+        parent::__construct($customRuleFactory, $requiredRule);
+
         $this->matchEnumRule = $matchEnumRule;
         $this->matchFieldValueRule = $matchFieldValueRule;
         $this->matchValueRule = $matchValueRule;

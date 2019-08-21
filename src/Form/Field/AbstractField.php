@@ -65,6 +65,17 @@ abstract class AbstractField implements FieldInterface
     private $valid;
 
     /**
+     * AbstractField constructor.
+     * @param CustomRuleFactory $customRuleFactory
+     * @param RequiredRule $requiredRule
+     */
+    public function __construct(CustomRuleFactory $customRuleFactory, RequiredRule $requiredRule)
+    {
+        $this->customRuleFactory = $customRuleFactory;
+        $this->requiredRule = $requiredRule;
+    }
+
+    /**
      * @return $this
      */
     private function addRequiredRule() // : $this
