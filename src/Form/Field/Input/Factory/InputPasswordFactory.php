@@ -39,7 +39,7 @@ class InputPasswordFactory extends AbstractInputFactory
     {
         $this->init($formBuilder);
 
-        $inputPassword = new InputPassword($this->requiredRule, $this->matchEnumRule, $this->matchFieldValueRule, $this->maxLengthRule, $this->minLengthRule);
+        $inputPassword = new InputPassword($this->customRuleFactory, $this->requiredRule, $this->matchEnumRule, $this->matchFieldValueRule, $this->maxLengthRule, $this->minLengthRule);
 
         return $inputPassword;
     }

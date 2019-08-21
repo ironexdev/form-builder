@@ -33,7 +33,7 @@ class InputHiddenFactory extends AbstractInputFactory
     {
         $this->init($formBuilder);
 
-        $inputHidden = new InputHidden($this->requiredRule, $this->matchEnumRule, $this->matchFieldValueRule, $this->matchValueRule);
+        $inputHidden = new InputHidden($this->customRuleFactory, $this->requiredRule, $this->matchEnumRule, $this->matchFieldValueRule, $this->matchValueRule);
 
         return $inputHidden;
     }

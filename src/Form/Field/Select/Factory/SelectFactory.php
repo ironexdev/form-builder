@@ -28,7 +28,7 @@ class SelectFactory extends AbstractFieldFactory
     {
         $this->init($formBuilder);
 
-        $inputText = new Select($this->customRule, $this->requiredRule, $this->matchEnumRule, $this->optionFactory);
+        $inputText = new Select($this->customRuleFactory, $this->requiredRule, $this->matchEnumRule, $this->optionFactory);
 
         return $inputText;
     }

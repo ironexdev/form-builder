@@ -6,9 +6,6 @@ use Ironex\Form\Field\AbstractField;
 use Ironex\Form\Field\FieldInterface;
 use Ironex\Form\Field\Rule\Factory\CustomRuleFactory;
 use Ironex\Form\Field\Rule\MatchEnumRule;
-
-;
-
 use Ironex\Form\Field\Rule\RequiredRule;
 use Ironex\Form\Field\Select\Factory\OptionFactory;
 

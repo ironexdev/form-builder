@@ -33,7 +33,7 @@ class InputRadioFactory extends AbstractInputFactory
     {
         $this->init($formBuilder);
 
-        $inputRadio = new InputRadio($this->requiredRule, $this->matchEnumRule, $this->matchValueRule, $this->inputRadioOptionFactory);
+        $inputRadio = new InputRadio($this->customRuleFactory, $this->requiredRule, $this->matchEnumRule, $this->matchValueRule, $this->inputRadioOptionFactory);
 
         return $inputRadio;
     }

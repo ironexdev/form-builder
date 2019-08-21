@@ -27,7 +27,7 @@ class InputFileFactory extends AbstractInputFactory
     {
         $this->init($formBuilder);
 
-        $inputFile = new InputFile($this->requiredRule, $this->matchMimeTypeRule, $this->maxFileSizeRule);
+        $inputFile = new InputFile($this->customRuleFactory, $this->requiredRule, $this->matchMimeTypeRule, $this->maxFileSizeRule);
 
         return $inputFile;
     }
